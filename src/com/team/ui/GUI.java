@@ -51,7 +51,6 @@ public class GUI extends JFrame{
 		setTitle("English Game");
 		setSize(W_SIZE,H_SIZE);
 		setLocationRelativeTo(null);
-		getContentPane().setBackground(Color.PINK);
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLayout(new CardLayout());

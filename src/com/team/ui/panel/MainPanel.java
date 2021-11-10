@@ -13,6 +13,8 @@ import com.team.ui.ActionClick;
 
 
 public class MainPanel extends BasePanel implements ActionClick{
+	private PanelStartApp panelStartApp;
+	
 	public MainPanel() {
 	}
 	
@@ -29,7 +31,8 @@ public class MainPanel extends BasePanel implements ActionClick{
 	
 	@Override
 	public void addComp() {
-		
+		panelStartApp = new PanelStartApp();
+		add(panelStartApp);
 	}
 
 	@Override
