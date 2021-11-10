@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import com.team.ui.GUI;
 
 public class PanelStartApp extends BasePanel{
-	private static final String APP_NAME = "STORES";
+	private static final String APP_NAME = "STORESdasdasdasdasda";
 	private JLabel lb_AppName, lb_BanLa, lb_DangKy;
 	private JButton bt_CuaHang, bt_KhachHang;
 	
