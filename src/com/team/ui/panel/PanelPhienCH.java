@@ -71,9 +71,7 @@ public class PanelPhienCH extends BasePanel{
         if (name.equals("button_ListSP")){
             actionClick_ListSP.acctionShowSP();
         }
-        else if (name.equals("button_logout")){
-            actionClick_ListSP.goBacktoLogin();
-        }
+        else System.out.println("Sai");
     }
 
     public ActionClick getActionClick_ListSP() {

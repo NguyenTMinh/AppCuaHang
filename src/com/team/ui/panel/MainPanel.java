@@ -14,9 +14,10 @@ import com.team.ui.ActionClick;
 
 public class MainPanel extends BasePanel implements ActionClick{
 	private PanelDangNhap panelDangNhap;
+	private PanelPhienCH panelPhienCH;
+	private PanelListSP panelListSP;
 
 	public MainPanel() {
-
 	}
 	
 	@Override
@@ -33,12 +34,19 @@ public class MainPanel extends BasePanel implements ActionClick{
 	@Override
 	public void addComp() {
 		panelDangNhap = new PanelDangNhap();
+		panelDangNhap.setActionClick(this);
 		add(panelDangNhap);
+		panelPhienCH = new PanelPhienCH();
+		panelPhienCH.setActionClick_ListSP(this);
+		add(panelPhienCH);
+		panelListSP = new PanelListSP();
+		add(panelListSP);
 	}
 
 	@Override
 	public void actionClick() {
-		
+		panelPhienCH.setVisible(true);
+		panelDangNhap.setVisible(false);
 	}
 
 	@Override
@@ -53,5 +61,11 @@ public class MainPanel extends BasePanel implements ActionClick{
 		
 	}
 
-	
+	@Override
+	public void acctionShowSP() {
+		panelListSP.setVisible(true);
+		panelPhienCH.setVisible(false);
+	}
+
+
 }
