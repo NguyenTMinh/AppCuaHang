@@ -1,5 +1,6 @@
 package com.team.ui.panel;
 
+import com.team.ui.ActionClick;
 import com.team.ui.GUI;
 
 import javax.swing.*;
@@ -17,6 +18,8 @@ public class PanelDangNhap extends BasePanel{
 
     private JButton jButton_Login;
     private JButton jButton_Return;
+
+    private ActionClick actionClick;
 
     @Override
     public void initUI() {
@@ -67,5 +70,21 @@ public class PanelDangNhap extends BasePanel{
         jButton_Return.setSize(90,30);
         add(jButton_Return);
 
+    }
+
+    @Override
+    protected void handleClick(String name) {
+        if(name.equals("button_login")){
+            actionClick.actionClick();
+        }
+        else System.out.println("Sai");
+    }
+
+    public ActionClick getActionClick() {
+        return actionClick;
+    }
+
+    public void setActionClick(ActionClick actionClick) {
+        this.actionClick = actionClick;
     }
 }

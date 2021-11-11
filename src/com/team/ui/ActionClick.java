@@ -4,5 +4,5 @@ public interface ActionClick {
 	void actionClick();
 	void dangKidangNhap();
 	void comeBack();
-
+	void acctionShowSP();
 }
