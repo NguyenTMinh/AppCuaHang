@@ -14,6 +14,7 @@ import com.team.ui.ActionClick;
 
 public class MainPanel extends BasePanel implements ActionClick{
 	private PanelStartApp panelStartApp;
+	private PanelDangKy panelDangKy;
 	
 	public MainPanel() {
 	}
@@ -32,25 +33,34 @@ public class MainPanel extends BasePanel implements ActionClick{
 	@Override
 	public void addComp() {
 		panelStartApp = new PanelStartApp();
+		panelStartApp.setAck(this);
 		add(panelStartApp);
+		panelDangKy = new PanelDangKy();
+		panelDangKy.setAck(this);
+		add(panelDangKy);
 	}
 
+
 	@Override
-	public void actionClick() {
+	public void toDangKy() {
+		panelStartApp.setVisible(false);
+		panelDangKy.setVisible(true);
+	}
+	
+	@Override
+	public void toDangNhap() {
 		
 	}
 
 	@Override
-	public void dangKidangNhap() {
+	public void actionClick() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void comeBack() {
-		// TODO Auto-generated method stub
-		
+		panelDangKy.setVisible(false);
+		panelStartApp.setVisible(true);
 	}
-
-	
 }

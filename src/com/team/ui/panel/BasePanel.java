@@ -62,13 +62,13 @@ public abstract class BasePanel extends JPanel implements ICommon{
 				handleClick(name);
 			}
 		});
-		bt.setBackground(Color.LIGHT_GRAY);
-		bt.setForeground(c);
 		bt.setOpaque(true);
+		bt.setBackground(Color.WHITE);
+		bt.setForeground(c);
 		bt.setLocation(x, y);
 		FontMetrics fm=getFontMetrics(bt.getFont());
-		int w=fm.stringWidth(bt.getText())+bt.getInsets().left*2;
-		int h=fm.getHeight()+getInsets().top*4;
+		int w=fm.stringWidth(bt.getText())+bt.getInsets().left*2 + 40;
+		int h=fm.getHeight()+getInsets().top*4 + 20;
 		bt.setSize(w, h);
 
 		return bt;
