@@ -21,7 +21,7 @@ public abstract class BasePanel extends JPanel implements ICommon{
 		addComp();
 	}
 	
-	protected JLabel creatLabel(String text,int x,int y,Font f, Color c,Color bg) {
+	protected JLabel createLabel(String text,int x,int y,Font f, Color c,Color bg) {
 		JLabel lb = new JLabel();
 		lb.setText(text);
 		lb.setLocation(x,y);
@@ -47,7 +47,18 @@ public abstract class BasePanel extends JPanel implements ICommon{
 		return tf;
 	}
 	
-	protected JButton creatButton(String text,int x,int y,Font f,Color c,String name) {
+	protected JPasswordField createPasswordField(int x,int y,int w,Font f,Color c) {
+		JPasswordField tf = new JPasswordField();
+		tf.setFont(f);
+		tf.setLocation(x, y);
+		FontMetrics fm = getFontMetrics(tf.getFont());
+		int hTfA = fm.getHeight();
+		tf.setSize(w, hTfA);
+		tf.setForeground(c);
+		return tf;
+	}
+	
+	protected JButton createButton(String text,int x,int y,Font f,Color c,String name) {
 		JButton bt = new JButton();
 		bt.setText(text);
 		bt.setFont(f);

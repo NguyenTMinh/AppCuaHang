@@ -4,19 +4,31 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
+import com.team.logic.CuaHang;
+import com.team.logic.KhachHang;
+import com.team.logic.ListCuaHang;
+import com.team.logic.ListKhachHang;
 import com.team.ui.ActionClick;
 
 
 public class MainPanel extends BasePanel implements ActionClick{
+	private ListKhachHang listKhachHang;
+	private ListCuaHang listCuaHang;
 	private PanelStartApp panelStartApp;
 	private PanelDangKy panelDangKy;
+	private PanelKhachHangDK panelKhachHangDK;
+	private PanelCuaHangDK panelCuaHangDK;
 	
 	public MainPanel() {
+		listCuaHang = new ListCuaHang();
+		listKhachHang = new ListKhachHang();
 	}
 	
 	@Override
@@ -38,6 +50,12 @@ public class MainPanel extends BasePanel implements ActionClick{
 		panelDangKy = new PanelDangKy();
 		panelDangKy.setAck(this);
 		add(panelDangKy);
+		panelKhachHangDK = new PanelKhachHangDK();
+		panelKhachHangDK.setAck(this);
+		add(panelKhachHangDK);
+		panelCuaHangDK = new PanelCuaHangDK();
+		panelCuaHangDK.setAck(this);
+		add(panelCuaHangDK);
 	}
 
 
@@ -60,7 +78,51 @@ public class MainPanel extends BasePanel implements ActionClick{
 
 	@Override
 	public void comeBack() {
+		panelCuaHangDK.setVisible(false);
+		panelKhachHangDK.setVisible(false);
 		panelDangKy.setVisible(false);
 		panelStartApp.setVisible(true);
 	}
+
+	@Override
+	public void backToDangKy() {
+		panelCuaHangDK.setVisible(false);
+		panelKhachHangDK.setVisible(false);
+		panelDangKy.setVisible(true);
+	}
+
+	@Override
+	public void toKhachHangDK() {
+		panelKhachHangDK.setVisible(true);
+		panelDangKy.setVisible(false);
+	}
+
+	@Override
+	public void addListKhachHang(KhachHang khachHang) {
+		this.listKhachHang.addKhachHang(khachHang);
+		try {
+			listKhachHang.writeDataToFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void toCuaHangDK() {
+		panelCuaHangDK.setVisible(true);
+		panelDangKy.setVisible(false);
+	}
+
+	@Override
+	public void addListCuaHang(CuaHang cuaHang) {
+		this.listCuaHang.addCuaHang(cuaHang);
+		try {
+			listCuaHang.writeDataToFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }
