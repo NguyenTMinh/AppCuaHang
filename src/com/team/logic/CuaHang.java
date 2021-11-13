@@ -60,8 +60,12 @@ public class CuaHang extends CommonUser{
 		this.sanPhamCuaHangs = sanPhamCuaHangs;
 	}
 	
+	public void addSamPhamCuaHang(SanPhamCuaHang hang) {
+		sanPhamCuaHangs.add(hang);
+	}
+	
 	public String getInfos() {
-		return this.getTaiKhoan()+"&"+this.getMatKhau()+"&"+this.getTenShop()+"&"+this.getDiaCHiShop()+"&"
-				+this.getSdtShop()+"&"+this.getEmailShop()+"&";
+		return this.getTaiKhoan()+"&"+this.getMatKhau()+"&"+this.getTenShop()+"&"+this.getDiaCHiShop()
+				+"&"+this.getSdtShop()+"&"+this.getEmailShop()+"&";
 	}
 }

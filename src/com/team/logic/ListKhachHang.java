@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ListKhachHang {
-	private final String PATH = System.getProperty("user.dir")+"\\ListKhachHang.txt";
+	private final String PATH = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\ListKhachHang.txt";
 	private List<KhachHang> khachHangs;
 	
 	public ListKhachHang() {

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListCuaHang {
-	private final String PATH = System.getProperty("user.dir")+"\\ListCuaHang.txt";
+	private final String PATH = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\ListCuaHang.txt";
 	private List<CuaHang> cuaHangs;
 	
 	public ListCuaHang() {
@@ -18,6 +18,14 @@ public class ListCuaHang {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public List<CuaHang> getCuaHangs() {
+		return cuaHangs;
+	}
+
+	public void setCuaHangs(List<CuaHang> cuaHangs) {
+		this.cuaHangs = cuaHangs;
 	}
 
 	private void readDataFromFile() throws IOException{

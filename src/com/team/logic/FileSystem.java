@@ -1,5 +1,6 @@
 package com.team.logic;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -8,9 +9,11 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class FileSystem {
+	public static String PATH_IMAGE_DEFAULT = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\ic_photo_size_select_actual.png";
 
 	public static void getSanPhamKHFromFile(String path,KhachHang khachHang) throws IOException{
 		List<SanPhamKhachHang> gioHang = new ArrayList<>();
@@ -40,7 +43,7 @@ public class FileSystem {
 	}
 	
 	public static String writeSanPhamKHToFile(KhachHang owner) throws IOException{
-		String path = System.getProperty("user.dir")+"\\"+owner.getSdt()+".txt";
+		String path = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\"+owner.getSdt()+".txt";
 		File file = new File(path);
 		file.createNewFile();
 		RandomAccessFile raf = new RandomAccessFile(file, "rw");
@@ -61,8 +64,11 @@ public class FileSystem {
 		String line = "";
 		while((line = raf.readLine()) != null) {
 			String[] item = line.split("&");
-			SanPhamCuaHang temp = new SanPhamCuaHang(item[0], item[1], item[2], item[3], Integer.parseInt(item[4]), null);
-			ImageIcon icon = new ImageIcon(item[5], item[5]);
+			String thongTinSP = item[3].replaceAll("#", "\n");
+			SanPhamCuaHang temp = new SanPhamCuaHang(item[0], item[1], item[2], thongTinSP,
+					Integer.parseInt(item[4]),Long.parseLong(item[5]), null);
+			BufferedImage image = ImageIO.read(new File(item[6]));
+			ImageIcon icon = new ImageIcon(image.getScaledInstance(50, 50, BufferedImage.SCALE_SMOOTH), item[6]);
 			temp.setAnhMH(icon);
 			list.add(temp);
 		}
@@ -71,7 +77,7 @@ public class FileSystem {
 	}
 	
 	public static String writeSanPhamCHToFile(CuaHang owner) throws IOException{
-		String path = System.getProperty("user.dir")+"\\"+owner.getSdtShop()+".txt";
+		String path = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\"+owner.getSdtShop()+".txt";
 		File file = new File(path);
 		file.createNewFile();
 		RandomAccessFile raf = new RandomAccessFile(file, "rw");

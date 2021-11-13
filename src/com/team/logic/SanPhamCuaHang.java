@@ -3,19 +3,23 @@ package com.team.logic;
 import javax.swing.ImageIcon;
 
 public class SanPhamCuaHang {
-	protected String maSP;
-	protected String tenSP;
-	protected String phanLoai;
-	protected String thongTinChiTiet;
-	protected int soLuong;
-	protected ImageIcon anhMH;
+	private String maSP;
+	private String tenSP;
+	private String phanLoai;
+	private String thongTinChiTiet;
+	private int soLuong;
+	private long giaTien;
+	private ImageIcon anhMH;
 	
-	public SanPhamCuaHang(String maSP, String tenSP, String phanLoai, String thongTinChiTiet, int soLuong, ImageIcon anhMH) {
+	public SanPhamCuaHang(String maSP, String tenSP, String phanLoai, String thongTinChiTiet, int soLuong, long giaTien,
+			ImageIcon anhMH) {
+		super();
 		this.maSP = maSP;
 		this.tenSP = tenSP;
 		this.phanLoai = phanLoai;
 		this.thongTinChiTiet = thongTinChiTiet;
 		this.soLuong = soLuong;
+		this.giaTien = giaTien;
 		this.anhMH = anhMH;
 	}
 
@@ -67,8 +71,17 @@ public class SanPhamCuaHang {
 		this.anhMH = anhMH;
 	}
 	
+	public long getGiaTien() {
+		return giaTien;
+	}
+
+	public void setGiaTien(long giaTien) {
+		this.giaTien = giaTien;
+	}
+
 	public String getInfos() {
-		return this.getMaSP()+"&"+this.getTenSP()+"&"+this.getPhanLoai()+"&"+this.getThongTinChiTiet()
-				+"&"+String.valueOf(this.getSoLuong())+"&"+this.getAnhMH().getDescription();
+		String thongTinSP = this.getThongTinChiTiet().replaceAll("\n", "#");
+		return this.getMaSP()+"&"+this.getTenSP()+"&"+this.getPhanLoai()+"&"+thongTinSP
+				+"&"+String.valueOf(this.getSoLuong())+"&"+String.valueOf(this.getGiaTien())+"&"+this.getAnhMH().getDescription();
 	}
 }
