@@ -226,20 +226,23 @@ public class PanelCuaHangDK extends BasePanel{
 					tf_Email.getText().equals("")) {
 				JOptionPane.showConfirmDialog(null, "Mời bạn nhập đầy đủ thông tin", "Error", JOptionPane.CLOSED_OPTION);
 			}else {
-				if(tf_ConfirmMK.getText().equals(tf_MatKhau.getText())) {
-					cuaHang = new CuaHang(tf_TaiKhoan.getText(), tf_MatKhau.getText(), tf_TenShop.getText(), tf_DiaChi.getText(), 
-							tf_Sdt.getText(), tf_Email.getText());
-					int x = JOptionPane.showConfirmDialog(null, "Đăng ký thành công, bạn có muốn thêm sản phẩm", "Stores", JOptionPane.YES_NO_OPTION);
-					if(x == JOptionPane.YES_OPTION) {
-						pn_infoSP.setVisible(true);
-						addSanPham();
+				if(checkValidAccount()) {
+					if(tf_ConfirmMK.getText().equals(tf_MatKhau.getText())) {
+						cuaHang = new CuaHang(tf_TaiKhoan.getText(), tf_MatKhau.getText(), tf_TenShop.getText(), tf_DiaChi.getText(), 
+								tf_Sdt.getText(), tf_Email.getText());
+						int x = JOptionPane.showConfirmDialog(null, "Đăng ký thành công, bạn có muốn thêm sản phẩm", "Stores", JOptionPane.YES_NO_OPTION);
+						if(x == JOptionPane.YES_OPTION) {
+							pn_infoSP.setVisible(true);
+							addSanPham();
+						}else {
+							ack.addListCuaHang(cuaHang);
+							ack.backToDangKy();
+						}
+						clearText();
+						
 					}else {
-						ack.addListCuaHang(cuaHang);
+						JOptionPane.showConfirmDialog(null, "Mật khẩu xác nhận không chính xác", "Error", JOptionPane.CLOSED_OPTION);
 					}
-					clearText();
-					
-				}else {
-					JOptionPane.showConfirmDialog(null, "Mật khẩu xác nhận không chính xác", "Error", JOptionPane.CLOSED_OPTION);
 				}
 			}
 		}
@@ -252,35 +255,62 @@ public class PanelCuaHangDK extends BasePanel{
 			}
 		}
 		if(name.equals(BT_XACNHANSP)) {
-			SanPhamCuaHang spCH = new SanPhamCuaHang(tf_PMaSp.getText(), tf_PTenSp.getText(), 
-					tf_PPhanLoai.getText(), ta_PThongTin.getText(), Integer.parseInt(tf_PSoLuong.getText()),
-					Long.parseLong(tf_GiaTien.getText()),null);
-			String path_image = "";
-			if(tf_PImage.getText().equals("")) {
-				path_image = FileSystem.PATH_IMAGE_DEFAULT;
-			}else {
-				path_image = tf_PImage.getText();
+			if(checkValidInput()) {
+				SanPhamCuaHang spCH = new SanPhamCuaHang(tf_PMaSp.getText(), tf_PTenSp.getText(), 
+						tf_PPhanLoai.getText(), ta_PThongTin.getText(), Integer.parseInt(tf_PSoLuong.getText()),
+						Long.parseLong(tf_GiaTien.getText()),null);
+				String path_image = "";
+				if(tf_PImage.getText().equals("")) {
+					path_image = FileSystem.PATH_IMAGE_DEFAULT;
+				}else {
+					path_image = tf_PImage.getText();
+				}
+				try {
+					BufferedImage image = ImageIO.read(new File(path_image));
+					ImageIcon icon = new ImageIcon(image.getScaledInstance(50, 50, BufferedImage.SCALE_SMOOTH),path_image);
+					spCH.setAnhMH(icon);
+					cuaHang.addSamPhamCuaHang(spCH);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				int x = JOptionPane.showConfirmDialog(null, "Thêm sản phẩm thành công, bạn có muốn thêm tiếp", 
+						"Stores",JOptionPane.YES_NO_OPTION);
+				if(x == JOptionPane.YES_OPTION) {
+					clearTextSP();
+				}else {
+					ack.addListCuaHang(cuaHang);
+					ack.comeBack();
+				}
 			}
-			try {
-				BufferedImage image = ImageIO.read(new File(path_image));
-				ImageIcon icon = new ImageIcon(image.getScaledInstance(50, 50, BufferedImage.SCALE_SMOOTH),path_image);
-				spCH.setAnhMH(icon);
-				cuaHang.addSamPhamCuaHang(spCH);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			int x = JOptionPane.showConfirmDialog(null, "Thêm sản phẩm thành công, bạn có muốn thêm tiếp", 
-					"Stores",JOptionPane.YES_NO_OPTION);
-			if(x == JOptionPane.YES_OPTION) {
-				clearTextSP();
-			}else {
-				ack.addListCuaHang(cuaHang);
-				ack.comeBack();
-			}
-				
 		}
 	}
 	
+	private boolean checkValidAccount() {
+		for (int i = 0; i < ack.getListCH().size(); i++) {
+			if(ack.getListCH().get(i).isAccountOrPhoneExisted(tf_TaiKhoan.getText(), tf_Sdt.getText())) {
+				JOptionPane.showMessageDialog(null, "Tên tài khoản hoặc số điện thoại đã được đăng ký,\nvui lòng kiểm tra lại", "Error", JOptionPane.CLOSED_OPTION);
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private boolean checkValidInput() {
+		if(tf_PTenSp.getText().equals("")||tf_PSoLuong.getText().equals("")||tf_PPhanLoai.getText().equals("")
+				||tf_PMaSp.getText().equals("")||ta_PThongTin.getText().equals("")) {
+			JOptionPane.showConfirmDialog(null, "Mời bạn nhập đầy đủ thông tin", "Error", JOptionPane.CLOSED_OPTION);
+			return false;
+		}else {
+			for (int i = 0; i < ack.getListCH().size(); i++) {
+				if(ack.getListCH().get(i).isSanPhamExisted(tf_PMaSp.getText())) {
+					JOptionPane.showConfirmDialog(null, "Mã sản phẩm đã tồn tại trong hệ thống", "Error", JOptionPane.CLOSED_OPTION);
+					return false;
+				}
+			}
+			return true;
+		}
+	}
+
 	private void clearTextSP() {
 		tf_PImage.setText("");
 		tf_PMaSp.setText("");

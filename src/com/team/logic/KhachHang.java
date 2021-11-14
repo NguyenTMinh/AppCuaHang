@@ -73,4 +73,11 @@ public class KhachHang extends CommonUser{
 		return this.getTaiKhoan()+"&"+this.getMatKhau()+"&"+this.getHoTen()+"&"+this.getDiaChi()+"&"
 				+this.getSdt()+"&"+this.getEmail()+"&";
 	}
+	
+	public boolean isAccountOrPhoneExisted(String acc, String phone) {
+		if(this.getTaiKhoan().equals(acc) || this.getSdt().equals(phone)) {
+			return true;
+		}
+		return false;
+	}
 }

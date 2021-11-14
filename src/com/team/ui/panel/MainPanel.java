@@ -124,5 +124,15 @@ public class MainPanel extends BasePanel implements ActionClick{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public List<CuaHang> getListCH() {
+		return this.listCuaHang.getCuaHangs();
+	}
+
+	@Override
+	public List<KhachHang> getListKH() {
+		return this.listKhachHang.getKhachHangs();
+	}
 	
 }

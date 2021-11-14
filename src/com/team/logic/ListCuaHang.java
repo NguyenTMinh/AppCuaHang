@@ -55,4 +55,5 @@ public class ListCuaHang {
 	public void addCuaHang(CuaHang cuaHang) {
 		this.cuaHangs.add(cuaHang);
 	}
+	
 }

@@ -117,21 +117,33 @@ public class PanelKhachHangDK extends BasePanel{
 					tf_Email.getText().equals("")) {
 				JOptionPane.showConfirmDialog(null, "Mời bạn nhập đầy đủ thông tin", "Error", JOptionPane.CLOSED_OPTION);
 			}else {
-				if(tf_ConfirmMK.getText().equals(tf_MatKhau.getText())) {
-					KhachHang khachHang = new KhachHang(tf_TaiKhoan.getText(), tf_MatKhau.getText(), tf_HoTen.getText(),
-							tf_DiaChi.getText(), tf_sdt.getText(), tf_Email.getText());
-					ack.addListKhachHang(khachHang);
-					JOptionPane.showConfirmDialog(null, "Đăng ký thành công", "Stores", JOptionPane.CLOSED_OPTION);
-					clearText();
-					ack.comeBack();
-				}else {
-					JOptionPane.showConfirmDialog(null, "Mật khẩu xác nhận không chính xác", "Error", JOptionPane.CLOSED_OPTION);
+				if(checkValidAccount()) {
+					if(tf_ConfirmMK.getText().equals(tf_MatKhau.getText())) {
+						KhachHang khachHang = new KhachHang(tf_TaiKhoan.getText(), tf_MatKhau.getText(), tf_HoTen.getText(),
+								tf_DiaChi.getText(), tf_sdt.getText(), tf_Email.getText());
+						ack.addListKhachHang(khachHang);
+						JOptionPane.showConfirmDialog(null, "Đăng ký thành công", "Stores", JOptionPane.CLOSED_OPTION);
+						clearText();
+						ack.comeBack();
+					}else {
+						JOptionPane.showConfirmDialog(null, "Mật khẩu xác nhận không chính xác", "Error", JOptionPane.CLOSED_OPTION);
+					}
 				}
 			}
 			
 		}
 	}
 	
+	private boolean checkValidAccount() {
+		for (int i = 0; i < ack.getListKH().size(); i++) {
+			if(ack.getListKH().get(i).isAccountOrPhoneExisted(tf_TaiKhoan.getText(), tf_sdt.getText())) {
+				JOptionPane.showConfirmDialog(null, "Tên tài khoản hoặc số điện thoại đã được đăng ký,\nvui lòng kiểm tra lại", "Error", JOptionPane.CLOSED_OPTION);
+				return false;
+			}
+		}
+		return true;
+	}
+
 	private void clearText() {
 		tf_ConfirmMK.setText("");
 		tf_DiaChi.setText("");
