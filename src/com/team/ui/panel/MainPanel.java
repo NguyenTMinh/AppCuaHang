@@ -25,6 +25,7 @@ public class MainPanel extends BasePanel implements ActionClick{
 	private PanelDangKy panelDangKy;
 	private PanelKhachHangDK panelKhachHangDK;
 	private PanelCuaHangDK panelCuaHangDK;
+	private PanelABC panelABC;
 	
 	public MainPanel() {
 		listCuaHang = new ListCuaHang();
