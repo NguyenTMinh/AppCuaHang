@@ -103,7 +103,7 @@ public class PanelKhachHangDK extends BasePanel{
 		add(lb_Email);
 		tf_Email = createTextField(tf_TaiKhoan.getX(), lb_Email.getY(), 320, font2, Color.BLACK);
 		add(tf_Email);
-		bt_XacNhan = createButton("Xác nhận", 0, tf_Email.getY()+tf_Email.getHeight()+40, font1, Color.BLACK, BT_XACNHAN);
+		bt_XacNhan = createButton("Xác nhận:", 0, tf_Email.getY()+tf_Email.getHeight()+40, font1, Color.BLACK, BT_XACNHAN);
 		x = GUI.W_SIZE/2 - bt_XacNhan.getWidth()/2;
 		bt_XacNhan.setLocation(x, bt_XacNhan.getY());
 		add(bt_XacNhan);
@@ -137,7 +137,7 @@ public class PanelKhachHangDK extends BasePanel{
 	private boolean checkValidAccount() {
 		for (int i = 0; i < ack.getListKH().size(); i++) {
 			if(ack.getListKH().get(i).isAccountOrPhoneExisted(tf_TaiKhoan.getText(), tf_sdt.getText())) {
-				JOptionPane.showConfirmDialog(null, "Tên tài khoản hoặc số điện thoại đã được đăng ký,\nvui lòng kiểm tra lại", "Error", JOptionPane.CLOSED_OPTION);
+				JOptionPane.showConfirmDialog(null, "Tên tài khoản hoặc số điện thoại đã được đăng ký mời bạn kiểm tra lại", "Error", JOptionPane.CLOSED_OPTION);
 				return false;
 			}
 		}

@@ -15,7 +15,7 @@ import com.team.ui.ActionClick;
 import com.team.ui.GUI;
 
 public class PanelDangKy extends BasePanel{
-	private static final String TITLE = "Bạn muốn đăng ký tài khoản dành cho";
+	private static final String TITLE = "Bạn muốn đăng ký tài khoản cho";
 	private static final String DKCH = "Quản lý cửa hàng";
 	private static final String BT_DKCH = "BT_DKCH";
 	private static final String DKKH = "Khách hàng";

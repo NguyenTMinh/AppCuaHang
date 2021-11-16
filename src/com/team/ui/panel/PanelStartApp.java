@@ -18,7 +18,7 @@ public class PanelStartApp extends BasePanel{
 	private static final String CH = "Quản lý cửa hàng";
 	private static final String BT_CUAHANG = "BT_CUAHANG";
 	private static final String BT_KHACHHANG = "BT_KHACHHANG";
-	private static final String KH = "Khách Hàng";
+	private static final String KH = "Khách hàng";
 	private static final String TEXT_DANG_KY = "Bạn chưa có tài khoản";
 	private static final String DANG_KY = "Đăng ký";
 	private static final String BT_DANGKY = "BT_DANGKY";

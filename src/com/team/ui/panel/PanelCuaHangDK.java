@@ -156,6 +156,8 @@ public class PanelCuaHangDK extends BasePanel{
 			public void mouseClicked(MouseEvent e) {
 				clearText();
 				backToDKCH();
+				ack.addListCuaHang(cuaHang);
+				ack.backToDangKy();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -273,7 +275,7 @@ public class PanelCuaHangDK extends BasePanel{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				int x = JOptionPane.showConfirmDialog(null, "Thêm sản phẩm thành công, bạn có muốn thêm tiếp", 
+				int x = JOptionPane.showConfirmDialog(null, "Thêm sản phẩm thành công bạn có muốn thêm tiếp", 
 						"Stores",JOptionPane.YES_NO_OPTION);
 				if(x == JOptionPane.YES_OPTION) {
 					clearTextSP();
@@ -288,7 +290,7 @@ public class PanelCuaHangDK extends BasePanel{
 	private boolean checkValidAccount() {
 		for (int i = 0; i < ack.getListCH().size(); i++) {
 			if(ack.getListCH().get(i).isAccountOrPhoneExisted(tf_TaiKhoan.getText(), tf_Sdt.getText())) {
-				JOptionPane.showMessageDialog(null, "Tên tài khoản hoặc số điện thoại đã được đăng ký,\nvui lòng kiểm tra lại", "Error", JOptionPane.CLOSED_OPTION);
+				JOptionPane.showMessageDialog(null, "Tên tài khoản hoặc số điện thoại đã được đăng ký mời bạn kiểm tra lại", "Error", JOptionPane.CLOSED_OPTION);
 				return false;
 			}
 		}
@@ -303,7 +305,7 @@ public class PanelCuaHangDK extends BasePanel{
 		}else {
 			for (int i = 0; i < ack.getListCH().size(); i++) {
 				if(ack.getListCH().get(i).isSanPhamExisted(tf_PMaSp.getText())) {
-					JOptionPane.showConfirmDialog(null, "Mã sản phẩm đã tồn tại trong hệ thống", "Error", JOptionPane.CLOSED_OPTION);
+					JOptionPane.showConfirmDialog(null, "Mã sản phẩm đã tồn tại", "Error", JOptionPane.CLOSED_OPTION);
 					return false;
 				}
 			}
