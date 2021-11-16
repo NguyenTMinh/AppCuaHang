@@ -39,7 +39,7 @@ public class PanelDangNhap extends BasePanel{
         Font font = new Font("Tahoma",Font.PLAIN,30);
         Font small_font = new Font("Tahoma",Font.PLAIN,20);
 
-        jLabel_Title = creatLabel("STORES",290,50,big_font,Color.BLACK,null);
+        jLabel_Title = creatLabel("STORE",290,50,big_font,Color.BLACK,null);
         jLabel_Title.setSize(220,60);
         add(jLabel_Title);
 
@@ -69,7 +69,6 @@ public class PanelDangNhap extends BasePanel{
         jButton_Return.setBorder(null);
         jButton_Return.setSize(90,30);
         add(jButton_Return);
-
     }
 
     @Override
