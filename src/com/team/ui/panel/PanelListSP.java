@@ -336,6 +336,8 @@ public class PanelListSP extends BasePanel {
         jLabel_TitleSp.setVisible(false);
         jPanel_main.setVisible(false);
         jLabel_iconReturn.setVisible(false);
+        jButton_showAllSp.setVisible(false);
+        textField_findSp.setVisible(false);
     }
     public void show_PanelList(){
         jButton_Return.setVisible(true);
@@ -346,6 +348,8 @@ public class PanelListSP extends BasePanel {
         jLabel_TitleSp.setVisible(true);
         jPanel_main.setVisible(true);
         jLabel_iconReturn.setVisible(true);
+        jButton_showAllSp.setVisible(true);
+        textField_findSp.setVisible(true);
     }
     public void removeTextField(){
         textField_maSp.setText("");
