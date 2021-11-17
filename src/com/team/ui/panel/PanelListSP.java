@@ -21,6 +21,7 @@ public class PanelListSP extends BasePanel {
     private JButton jButton_editSp;
     private JLabel jLabel_TitleSp;
     private JList<SanPhamCuaHang> listsanphamCH;
+    private DefaultListModel<SanPhamCuaHang> model_sp;
 
     @Override
     public void initUI() {
@@ -62,13 +63,12 @@ public class PanelListSP extends BasePanel {
         add(jLabel);
 
         // Tao JList
-        JPanel jPanel_main = new JPanel();
+        JPanel jPanel_main = new JPanel(); // Tạo PanelMain để chứa
         jPanel_main.setBounds(0,150, 786,300);
         jPanel_main.setBackground(Color.decode("#97D7D3"));
         jPanel_main.setLayout(new BorderLayout());
 
-        DefaultListModel<SanPhamCuaHang> model_sp = new DefaultListModel<>();
-
+        model_sp = new DefaultListModel<>(); // Tạo model để add vào JList -- mỗi model là thể hiện cho 1 sản phẩm của cửa hàng
         model_sp.addElement(new SanPhamCuaHang("1","Áo thun","Áo","Áo cao cấp",20,150,null));
         model_sp.addElement(new SanPhamCuaHang("2","Áo dài tay","Áo","Áo cao cấp",20,200,null));
         model_sp.addElement(new SanPhamCuaHang("3","Áo phông ","Áo","Áo cao cấp",20,150,null));
@@ -76,135 +76,12 @@ public class PanelListSP extends BasePanel {
         model_sp.addElement(new SanPhamCuaHang("5","Quần đùi","Quần","Quần cao cấp",20,200,null));
         model_sp.addElement(new SanPhamCuaHang("6","Quần dài","Quần","Quần cao cấp",20,250,null));
 
-        listsanphamCH = new JList<>(model_sp);
+        listsanphamCH = new JList<>(model_sp); // khởi tạo JList với các thành phần bên trong là các model
         listsanphamCH.setCellRenderer(new PanelSanPhamRender());
-        jPanel_main.add(new JScrollPane(listsanphamCH),BorderLayout.CENTER);
+        jPanel_main.add(new JScrollPane(listsanphamCH),BorderLayout.CENTER); // add Jlist vào trong 1 ScrollPane , sau đó add ScrollPane vào cái PanelMain
 
-        add(jPanel_main);
+        add(jPanel_main); // add PanelMain vào Panel chính
 
-/*        JPanel jPanel_main = new JPanel();
-        jPanel_main.setBounds(0,150, 786,300);
-        jPanel_main.setLayout(new FlowLayout());
-        jPanel_main.setBackground(Color.decode("#97D7D3"));
-
-        /////////
-        JPanel jPanel_sp1 = new JPanel();
-        Label label_sp1_maSp = new Label("Ma san pham 1");
-        label_sp1_maSp.setFont(sp_font);
-        Label label_sp1_tenSp = new Label("Ten san pham");
-        label_sp1_tenSp.setFont(sp_font);
-        Label label_sp1_giatienSp = new Label("Gia tien");
-        label_sp1_giatienSp.setFont(sp_font);
-        Label label_sp1_soluongSp = new Label("So luong");
-        label_sp1_soluongSp.setFont(sp_font);
-        JCheckBox checkBox_sp1 = new JCheckBox();
-        checkBox_sp1.setText("Chọn sp 1");
-        checkBox_sp1.setBackground(null);
-
-        jPanel_sp1.setBackground(Color.white);
-        jPanel_sp1.setLayout(new GridLayout(5,1));
-        jPanel_sp1.setBorder(new LineBorder(Color.black));
-        jPanel_sp1.add(label_sp1_maSp);
-        jPanel_sp1.add(label_sp1_tenSp);
-        jPanel_sp1.add(label_sp1_giatienSp);
-        jPanel_sp1.add(label_sp1_soluongSp);
-        jPanel_sp1.add(checkBox_sp1);
-
-        ////////
-        JPanel jPanel_sp2 = new JPanel();
-        Label label_sp2_maSp = new Label("Ma san pham 2");
-        label_sp2_maSp.setFont(sp_font);
-        Label label_sp2_tenSp = new Label("Ten san pham");
-        label_sp2_tenSp.setFont(sp_font);
-        Label label_sp2_giatienSp = new Label("Gia tien");
-        label_sp2_giatienSp.setFont(sp_font);
-        Label label_sp2_soluongSp = new Label("So luong");
-        label_sp2_soluongSp.setFont(sp_font);
-        JCheckBox checkBox_sp2 = new JCheckBox();
-        checkBox_sp2.setText("Chọn sp 2");
-        checkBox_sp2.setBackground(null);
-
-        jPanel_sp2.setBackground(Color.white);
-        jPanel_sp2.setLayout(new GridLayout(5,1));
-        jPanel_sp2.setBorder(new LineBorder(Color.black));
-        jPanel_sp2.add(label_sp2_maSp);
-        jPanel_sp2.add(label_sp2_tenSp);
-        jPanel_sp2.add(label_sp2_giatienSp);
-        jPanel_sp2.add(label_sp2_soluongSp);
-        jPanel_sp2.add(checkBox_sp2);
-        ///
-        JPanel jPanel_sp3 = new JPanel();
-        Label label_sp3_maSp = new Label("Ma san pham 3");
-        label_sp3_maSp.setFont(sp_font);
-        Label label_sp3_tenSp = new Label("Ten san pham");
-        label_sp3_tenSp.setFont(sp_font);
-        Label label_sp3_giatienSp = new Label("Gia tien");
-        label_sp3_giatienSp.setFont(sp_font);
-        Label label_sp3_soluongSp = new Label("So luong");
-        label_sp3_soluongSp.setFont(sp_font);
-        JCheckBox checkBox_sp3 = new JCheckBox();
-        checkBox_sp3.setText("Chọn sp 3");
-        checkBox_sp3.setBackground(null);
-
-        jPanel_sp3.setBackground(Color.white);
-        jPanel_sp3.setLayout(new GridLayout(5,1));
-        jPanel_sp3.setBorder(new LineBorder(Color.black));
-        jPanel_sp3.add(label_sp3_maSp);
-        jPanel_sp3.add(label_sp3_tenSp);
-        jPanel_sp3.add(label_sp3_giatienSp);
-        jPanel_sp3.add(label_sp3_soluongSp);
-        jPanel_sp3.add(checkBox_sp3);
-
-        JPanel jPanel_sp4 = new JPanel();
-        Label label_sp4_maSp = new Label("Ma san pham 4");
-        label_sp4_maSp.setFont(sp_font);
-        Label label_sp4_tenSp = new Label("Ten san pham");
-        label_sp4_tenSp.setFont(sp_font);
-        Label label_sp4_giatienSp = new Label("Gia tien");
-        label_sp4_giatienSp.setFont(sp_font);
-        Label label_sp4_soluongSp = new Label("So luong");
-        label_sp4_soluongSp.setFont(sp_font);
-        JCheckBox checkBox_sp4 = new JCheckBox();
-        checkBox_sp4.setText("Chọn sp 4");
-        checkBox_sp4.setBackground(null);
-
-        jPanel_sp4.setBackground(Color.white);
-        jPanel_sp4.setLayout(new GridLayout(5,1));
-        jPanel_sp4.setBorder(new LineBorder(Color.black));
-        jPanel_sp4.add(label_sp4_maSp);
-        jPanel_sp4.add(label_sp4_tenSp);
-        jPanel_sp4.add(label_sp4_giatienSp);
-        jPanel_sp4.add(label_sp4_soluongSp);
-        jPanel_sp4.add(checkBox_sp4);
-
-        JPanel jPanel_sp5 = new JPanel();
-        Label label_sp5_maSp = new Label("Ma san pham 4");
-        label_sp5_maSp.setFont(sp_font);
-        Label label_sp5_tenSp = new Label("Ten san pham");
-        label_sp5_tenSp.setFont(sp_font);
-        Label label_sp5_giatienSp = new Label("Gia tien");
-        label_sp5_giatienSp.setFont(sp_font);
-        Label label_sp5_soluongSp = new Label("So luong");
-        label_sp5_soluongSp.setFont(sp_font);
-        JCheckBox checkBox_sp5 = new JCheckBox();
-        checkBox_sp5.setText("Chọn sp 4");
-        checkBox_sp5.setBackground(null);
-
-        jPanel_sp5.setBackground(Color.white);
-        jPanel_sp5.setLayout(new GridLayout(5,1));
-        jPanel_sp5.setBorder(new LineBorder(Color.black));
-        jPanel_sp5.add(label_sp5_maSp);
-        jPanel_sp5.add(label_sp5_tenSp);
-        jPanel_sp5.add(label_sp5_giatienSp);
-        jPanel_sp5.add(label_sp5_soluongSp);
-        jPanel_sp5.add(checkBox_sp5);
-
-        jPanel_main.add(jPanel_sp1);
-        jPanel_main.add(jPanel_sp2);
-        jPanel_main.add(jPanel_sp3);
-        jPanel_main.add(jPanel_sp4);
-        jPanel_main.add(jPanel_sp5);
-        add(jPanel_main);*/
 
         jButton_addSp = creatButton("Thêm sản phẩm",280,515,sp_font,Color.black,"button_addsp");
         jButton_addSp.setSize(230,40);
@@ -268,4 +145,14 @@ public class PanelListSP extends BasePanel {
     public void setActionClick(ActionClick actionClick) {
         this.actionClick = actionClick;
     }
+
+    public JList<SanPhamCuaHang> getListsanphamCH() {
+        return listsanphamCH;
+    }
+
+    public void setListsanphamCH(JList<SanPhamCuaHang> listsanphamCH) {
+        this.listsanphamCH = listsanphamCH;
+    }
+
+
 }
