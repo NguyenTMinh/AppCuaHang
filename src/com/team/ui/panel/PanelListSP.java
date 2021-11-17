@@ -74,7 +74,7 @@ public class PanelListSP extends BasePanel {
     public void addComp() {
         Font sp_font = new Font("Tahoma",Font.PLAIN,20);
 
-        jLabel_TitleSp = creatLabel("Sản phẩm",280,35,new Font("Helvetica Neue",Font.CENTER_BASELINE,50),Color.black,Color.white);
+        jLabel_TitleSp = creatLabel("Sản phẩm",280,20,new Font("Helvetica Neue",Font.CENTER_BASELINE,50),Color.black,Color.white);
         jLabel_TitleSp.setSize(300,60);
         add(jLabel_TitleSp);
 
@@ -108,7 +108,7 @@ public class PanelListSP extends BasePanel {
 
         // Tao JList
         jPanel_main = new JPanel(); // Tạo PanelMain để chứa
-        jPanel_main.setBounds(0,150, 786,300);
+        jPanel_main.setBounds(0,150, 786,320);
         jPanel_main.setBackground(Color.decode("#97D7D3"));
         jPanel_main.setLayout(new BorderLayout());
 
@@ -127,25 +127,25 @@ public class PanelListSP extends BasePanel {
         add(jPanel_main); // add PanelMain vào Panel chính
 
 
-        jButton_addSp = creatButton("Thêm sản phẩm",280,515,sp_font,Color.black,"button_addsp");
+        jButton_addSp = creatButton("Thêm sản phẩm",280,540,sp_font,Color.black,"button_addsp");
         jButton_addSp.setSize(230,40);
         jButton_addSp.setFocusable(false);
         jButton_addSp.setBackground(Color.decode("#97D7D3"));
         add(jButton_addSp);
 
-        jButton_showAllSp = creatButton("Tất cả sản phẩm",295,460,sp_font,Color.black,"button_showAllSp");
+        jButton_showAllSp = creatButton("Tất cả sản phẩm",295,480,sp_font,Color.black,"button_showAllSp");
         jButton_showAllSp.setSize(200,30);
         jButton_showAllSp.setFocusable(false);
         jButton_showAllSp.setBackground(Color.decode("#97D7D3"));
         add(jButton_showAllSp);
 
-        jButton_deleteSp = creatButton("Xóa sản phẩm", 10,515,sp_font,Color.black,"button_deletesp");
+        jButton_deleteSp = creatButton("Xóa sản phẩm", 10,540,sp_font,Color.black,"button_deletesp");
         jButton_deleteSp.setSize(230,40);
         jButton_deleteSp.setFocusable(false);
         jButton_deleteSp.setBackground(Color.decode("#97D7D3"));
         add(jButton_deleteSp);
 
-        jButton_editSp = creatButton("Sửa sản phẩm", 545,515,sp_font,Color.black,"button_editsp");
+        jButton_editSp = creatButton("Sửa sản phẩm", 545,540,sp_font,Color.black,"button_editsp");
         jButton_editSp.setSize(230,40);
         jButton_editSp.setFocusable(false);
         jButton_editSp.setBackground(Color.decode("#97D7D3"));
@@ -157,7 +157,8 @@ public class PanelListSP extends BasePanel {
         jButton_findSp.setBackground(Color.decode("#97D7D3"));
         add(jButton_findSp);
 
-        textField_findSp = createTextField(200,113,400,sp_font,Color.black);
+        textField_findSp = createTextField(200,100,400,sp_font,Color.black);
+        textField_findSp.setSize(400,40);
         add(textField_findSp);
 
 
