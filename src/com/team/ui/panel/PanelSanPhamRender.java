@@ -53,12 +53,7 @@ public class PanelSanPhamRender extends JPanel implements ListCellRenderer<SanPh
         label_Giasp.setFont( new Font("Tahoma",Font.PLAIN,15));
         label_Giasp.setForeground(Color.decode("#61149c"));
 
-        try {
-            BufferedImage image_sp = ImageIO.read(new File("C:\\Users\\lehoa\\IdeaProjects\\CuaHang_App\\src\\com\\team\\ui\\Picture\\aophong.jpg"));
-            label_Image.setIcon(new ImageIcon(image_sp.getScaledInstance(100,100,Image.SCALE_SMOOTH)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        label_Image.setIcon(value.getAnhMH());
 
         if (isSelected){
             setBackground(list.getSelectionBackground());

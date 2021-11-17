@@ -9,8 +9,9 @@ public interface ActionClick {
 	void actionClick();
 	void dangKidangNhap();
 	void comeBack();
+	void goBacktoLogin();
+	void goBacktoPhienCH();
 	void acctionShowSP();
 	void addSp();
-	List<SanPhamCuaHang> listSpCh();
-	DefaultListModel<SanPhamCuaHang> model_SanPhamCH();
+	DefaultListModel<SanPhamCuaHang> getModel_SpCH();
 }

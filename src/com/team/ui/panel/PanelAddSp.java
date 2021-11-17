@@ -25,6 +25,9 @@ public class PanelAddSp extends BasePanel{
     private JButton button_Xacnhan;
     private JButton button_return;
 
+    private PanelListSP panelListSP = panelListSP = new PanelListSP();
+
+    private DefaultListModel<SanPhamCuaHang> model_SpCH = (DefaultListModel<SanPhamCuaHang>) panelListSP.getListsanphamCH().getModel();
     @Override
     public void initUI() {
         setLayout(null);
@@ -86,14 +89,16 @@ public class PanelAddSp extends BasePanel{
     protected void handleClick(String name) {
         if (name.equals("button_xacNhanAddSp")){
             if (textField_maSp.getText().equals(" ")|| textField_tenSp.getText().equals("")|| textField_phanLoai.getText().equals("")||textField_thongtinChiTiet.getText().equals("") || textField_soLuong.getText().equals("")||textField_giaTien.getText().equals("")){
-                System.out.println("ao");
                 JOptionPane.showConfirmDialog(null,"Hãy nhập đầy đủ","Error",JOptionPane.CLOSED_OPTION);
             }
             else {
+                model_SpCH.addElement(new SanPhamCuaHang(textField_maSp.getText(),textField_tenSp.getText(),textField_phanLoai.getText(),textField_thongtinChiTiet.getText(),Integer.valueOf(textField_soLuong.getText()),Integer.valueOf(textField_giaTien.getText()),null));
+                removeTextField();
                 actionClick.acctionShowSP();
             }
         }
         if (name.equals("button_return")){
+            removeTextField();
             actionClick.acctionShowSP();
         }
     }
@@ -106,7 +111,17 @@ public class PanelAddSp extends BasePanel{
     public void setActionClick(ActionClick actionClick) {
         this.actionClick = actionClick;
     }
-    public String getText_masp(){
-        return textField_maSp.getText();
+
+    public DefaultListModel<SanPhamCuaHang> getModel_SpCH() {
+        return model_SpCH;
+    }
+
+    public void removeTextField(){
+        textField_maSp.setText("");
+        textField_tenSp.setText("");
+        textField_phanLoai.setText("");
+        textField_thongtinChiTiet.setText("");
+        textField_soLuong.setText("");
+        textField_giaTien.setText("");
     }
 }
