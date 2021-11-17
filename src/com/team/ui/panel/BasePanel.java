@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import com.team.ui.ICommon;
 

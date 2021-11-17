@@ -1,20 +1,18 @@
 package com.team.ui.panel;
 
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.LayoutManager;
+import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.SpringLayout;
-
+import javax.swing.*;
 import com.team.logic.CuaHang;
 import com.team.logic.KhachHang;
 import com.team.logic.ListCuaHang;
 import com.team.logic.ListKhachHang;
+import com.team.logic.SanPhamCuaHang;
 import com.team.ui.ActionClick;
 
 
@@ -25,6 +23,11 @@ public class MainPanel extends BasePanel implements ActionClick{
 	private PanelDangKy panelDangKy;
 	private PanelKhachHangDK panelKhachHangDK;
 	private PanelCuaHangDK panelCuaHangDK;
+	private PanelDangNhap panelDangNhap;
+	private PanelPhienCH panelPhienCH;
+	private PanelListSP panelListSP;
+	private PanelAddSp panelAddSp;
+	
 	
 	public MainPanel() {
 		listCuaHang = new ListCuaHang();
@@ -56,9 +59,68 @@ public class MainPanel extends BasePanel implements ActionClick{
 		panelCuaHangDK = new PanelCuaHangDK();
 		panelCuaHangDK.setAck(this);
 		add(panelCuaHangDK);
+		panelDangNhap = new PanelDangNhap();
+		panelDangNhap.setActionClick(this);
+		add(panelDangNhap);
+
+		panelPhienCH = new PanelPhienCH();
+		panelPhienCH.setActionClick_ListSP(this);
+		add(panelPhienCH);
+
+		panelListSP = new PanelListSP();
+		panelListSP.setActionClick(this);
+		add(panelListSP);
+
+		panelAddSp = new PanelAddSp();
+		panelAddSp.setActionClick(this);
+		add(panelAddSp);
+	}
+
+	@Override
+	public void actionClick() {
+		panelPhienCH.setVisible(true);
+		panelDangNhap.setVisible(false);
+	}
+	
+	@Override
+	public void dangKidangNhap() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void goBacktoPhienCH() {
+		panelPhienCH.setVisible(true);
+		panelListSP.setVisible(false);
+	}
+
+	@Override
+	public void acctionShowSP() {
+		panelListSP.setModelList(panelAddSp.getModel_SpCH());
+		panelListSP.setVisible(true);
+		panelPhienCH.setVisible(false);
+		panelAddSp.setVisible(false);
+	}
+
+	@Override
+	public void addSp() {
+		panelListSP.setVisible(false);
+		panelAddSp.setVisible(true);
 	}
 
 
+	@Override
+	public DefaultListModel<SanPhamCuaHang> getModel_SpCH() {
+		return panelAddSp.getModel_SpCH();
+	}
+
+	
+	@Override
+	public void goBacktoLogin() {
+		panelDangNhap.setVisible(true);
+		panelPhienCH.setVisible(false);
+	}
+	
 	@Override
 	public void toDangKy() {
 		panelStartApp.setVisible(false);
@@ -69,13 +131,7 @@ public class MainPanel extends BasePanel implements ActionClick{
 	public void toDangNhap() {
 		
 	}
-
-	@Override
-	public void actionClick() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public void comeBack() {
 		panelCuaHangDK.setVisible(false);

@@ -23,6 +23,7 @@ public class SanPhamCuaHang {
 		this.anhMH = anhMH;
 	}
 
+
 	public String getMaSP() {
 		return maSP;
 	}
@@ -83,5 +84,12 @@ public class SanPhamCuaHang {
 		String thongTinSP = this.getThongTinChiTiet().replaceAll("\n", "#");
 		return this.getMaSP()+"&"+this.getTenSP()+"&"+this.getPhanLoai()+"&"+thongTinSP
 				+"&"+String.valueOf(this.getSoLuong())+"&"+String.valueOf(this.getGiaTien())+"&"+this.getAnhMH().getDescription();
+	}
+
+	@Override
+	public String toString() {
+		String thongTinSP = this.getThongTinChiTiet().replaceAll("\n", "#");
+		return this.getMaSP()+"\t "+this.getTenSP()+"\t "+this.getPhanLoai()+"\t "+thongTinSP
+				+"\t "+String.valueOf(this.getSoLuong())+"\t "+String.valueOf(this.getGiaTien());
 	}
 }

@@ -27,7 +27,7 @@ public class PanelDangKy extends BasePanel{
 	@Override
 	public void initUI() {
 		setLayout(null);
-		setBackground(GUI.colorTheme);
+		setBackground(GUI.colerTheme);
 		setVisible(true);
 	}
 
@@ -44,7 +44,7 @@ public class PanelDangKy extends BasePanel{
 		Icon icon = new ImageIcon("D:\\Downloads\\ic_arrow_back_ios1.png","comeback");
 		lb_QuayLai = new JLabel("<html><u>Quay lại</u></html>", icon, JLabel.CENTER);
 		lb_QuayLai.setLocation(20, 20);
-		lb_QuayLai.setBackground(GUI.colorTheme);
+		lb_QuayLai.setBackground(GUI.colerTheme);
 		lb_QuayLai.setSize(100,40);
 		lb_QuayLai.setFont(font2);
 		lb_QuayLai.setOpaque(true);
@@ -65,7 +65,7 @@ public class PanelDangKy extends BasePanel{
 			}
 		});
 		add(lb_QuayLai);
-		lb_text = createLabel(TITLE, 0, lb_QuayLai.getY()+lb_QuayLai.getHeight()+50, font1, Color.BLACK, GUI.colorTheme);
+		lb_text = createLabel(TITLE, 0, lb_QuayLai.getY()+lb_QuayLai.getHeight()+50, font1, Color.BLACK, GUI.colerTheme);
 		int x = GUI.W_SIZE/2 - lb_text.getWidth()/2;
 		lb_text.setLocation(x, lb_text.getY());
 		add(lb_text);

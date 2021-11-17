@@ -29,7 +29,7 @@ public class PanelStartApp extends BasePanel{
 	public void initUI() {
 		setLayout(null);
 		setVisible(true);
-		setBackground(GUI.colorTheme);
+		setBackground(GUI.colerTheme);
 	}
 
 	@Override

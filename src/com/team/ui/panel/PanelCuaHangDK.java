@@ -1,7 +1,6 @@
 package com.team.ui.panel;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,7 +22,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import com.team.logic.CuaHang;
 import com.team.logic.FileSystem;
-import com.team.logic.KhachHang;
 import com.team.logic.SanPhamCuaHang;
 import com.team.ui.ActionClick;
 import com.team.ui.GUI;
@@ -33,7 +31,7 @@ public class PanelCuaHangDK extends BasePanel{
 	private static final String BT_XACNHAN = "BT_XACNHAN";
 	private static final String BT_THEMANH = "BT_THEMANH";
 	private static final String BT_XACNHANSP = "BT_XACNHANSP";
-	private JLabel lb_QuayLai, lb_QuayLaiSP, lb_Title, lb_TaiKhoan, lb_MatKhau, lb_ConfirmMK, lb_TenShop, lb_DiaChi, lb_Sdt, lb_Email;
+	private JLabel lb_QuayLai, lb_Title, lb_TaiKhoan, lb_MatKhau, lb_ConfirmMK, lb_TenShop, lb_DiaChi, lb_Sdt, lb_Email;
 	private JTextField tf_TaiKhoan, tf_TenShop, tf_DiaChi, tf_Sdt, tf_Email;
 	private JPasswordField tf_MatKhau, tf_ConfirmMK;
 	private JButton bt_XacNhan, bt_XacNhanSP, bt_ThemAnh;
@@ -41,13 +39,12 @@ public class PanelCuaHangDK extends BasePanel{
 	private JLabel lb_PQuayLai,lb_PTitle,lb_PMaSp,lb_PTenSp,lb_PPhanLoai,lb_PThongTin,lb_PSoLuong,lb_GiaTien,lb_PImage;
 	private JTextField tf_PMaSp,tf_PTenSp,tf_PPhanLoai,tf_PSoLuong,tf_GiaTien,tf_PImage;
 	private JTextArea ta_PThongTin;
-	private JScrollPane sp_ThongTin;
 	private CuaHang cuaHang;
 
 	@Override
 	public void initUI() {
 		setLayout(null);
-		setBackground(GUI.colorTheme);
+		setBackground(GUI.colerTheme);
 		setVisible(true);
 	}
 
@@ -71,7 +68,7 @@ public class PanelCuaHangDK extends BasePanel{
 		Icon icon = new ImageIcon("D:\\Downloads\\ic_arrow_back_ios1.png","comeback");
 		lb_QuayLai = new JLabel("<html><u>Quay lại</u></html>", icon, JLabel.CENTER);
 		lb_QuayLai.setLocation(20, 20);
-		lb_QuayLai.setBackground(GUI.colorTheme);
+		lb_QuayLai.setBackground(GUI.colerTheme);
 		lb_QuayLai.setSize(100,40);
 		lb_QuayLai.setFont(font2);
 		lb_QuayLai.setOpaque(true);
@@ -102,40 +99,40 @@ public class PanelCuaHangDK extends BasePanel{
 			
 		});
 		add(lb_QuayLai);
-		lb_Title = createLabel(TITLE, 0, lb_QuayLai.getY()+lb_QuayLai.getHeight()+20, font1, Color.BLACK, GUI.colorTheme);
+		lb_Title = createLabel(TITLE, 0, lb_QuayLai.getY()+lb_QuayLai.getHeight()+20, font1, Color.BLACK, GUI.colerTheme);
 		x = GUI.W_SIZE/2 - lb_Title.getWidth()/2;
 		lb_Title.setLocation(x, lb_Title.getY());
 		add(lb_Title);
-		lb_TaiKhoan = createLabel("Tài khoản:", 150, lb_Title.getY()+lb_Title.getHeight()+20, font2, Color.BLACK, GUI.colorTheme);
+		lb_TaiKhoan = createLabel("Tài khoản:", 150, lb_Title.getY()+lb_Title.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
 		add(lb_TaiKhoan);
 		tf_TaiKhoan = createTextField(lb_TaiKhoan.getX()+lb_TaiKhoan.getWidth()+20, lb_TaiKhoan.getY(), 320, font2, Color.BLACK);
 		add(tf_TaiKhoan);
-		lb_MatKhau = createLabel("Mật khẩu:", lb_TaiKhoan.getX(), lb_TaiKhoan.getY()+lb_TaiKhoan.getHeight()+20, font2, Color.BLACK, GUI.colorTheme);
+		lb_MatKhau = createLabel("Mật khẩu:", lb_TaiKhoan.getX(), lb_TaiKhoan.getY()+lb_TaiKhoan.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
 		lb_MatKhau.setLocation(lb_TaiKhoan.getX()-(lb_MatKhau.getWidth()-lb_TaiKhoan.getWidth()), lb_MatKhau.getY());
 		add(lb_MatKhau);
 		tf_MatKhau = createPasswordField(tf_TaiKhoan.getX(), lb_MatKhau.getY(), 320, font2, Color.BLACK);
 		add(tf_MatKhau);
-		lb_ConfirmMK = createLabel("Xác nhận mật khẩu:", 0, lb_MatKhau.getY()+lb_MatKhau.getHeight()+20, font2, Color.BLACK, GUI.colorTheme);
+		lb_ConfirmMK = createLabel("Xác nhận mật khẩu:", 0, lb_MatKhau.getY()+lb_MatKhau.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
 		lb_ConfirmMK.setLocation(lb_TaiKhoan.getX()-(lb_ConfirmMK.getWidth()-lb_TaiKhoan.getWidth()), lb_ConfirmMK.getY());
 		add(lb_ConfirmMK);
 		tf_ConfirmMK = createPasswordField(tf_TaiKhoan.getX(), lb_ConfirmMK.getY(), 320, font2, Color.BLACK);
 		add(tf_ConfirmMK);
-		lb_TenShop = createLabel("Tên shop:", 0, lb_ConfirmMK.getY()+lb_ConfirmMK.getHeight()+20, font2, Color.BLACK, GUI.colorTheme);
+		lb_TenShop = createLabel("Tên shop:", 0, lb_ConfirmMK.getY()+lb_ConfirmMK.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
 		lb_TenShop.setLocation(lb_TaiKhoan.getX()-(lb_TenShop.getWidth()-lb_TaiKhoan.getWidth()), lb_TenShop.getY());
 		add(lb_TenShop);
 		tf_TenShop = createTextField(tf_TaiKhoan.getX(), lb_TenShop.getY(), 320, font2, Color.BLACK);
 		add(tf_TenShop);
-		lb_DiaChi = createLabel("Địa chỉ shop:", 0, lb_TenShop.getY()+lb_TenShop.getHeight()+20, font2, Color.BLACK, GUI.colorTheme);
+		lb_DiaChi = createLabel("Địa chỉ shop:", 0, lb_TenShop.getY()+lb_TenShop.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
 		lb_DiaChi.setLocation(lb_TaiKhoan.getX()-(lb_DiaChi.getWidth()-lb_TaiKhoan.getWidth()), lb_DiaChi.getY());
 		add(lb_DiaChi);
 		tf_DiaChi = createTextField(tf_TaiKhoan.getX(), lb_DiaChi.getY(), 320, font2, Color.BLACK);
 		add(tf_DiaChi);
-		lb_Sdt = createLabel("Số điện thoại:", 0, lb_DiaChi.getY()+lb_DiaChi.getHeight()+20, font2, Color.BLACK, GUI.colorTheme);
+		lb_Sdt = createLabel("Số điện thoại:", 0, lb_DiaChi.getY()+lb_DiaChi.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
 		lb_Sdt.setLocation(lb_TaiKhoan.getX()-(lb_Sdt.getWidth()-lb_TaiKhoan.getWidth()), lb_Sdt.getY());
 		add(lb_Sdt);
 		tf_Sdt = createTextField(tf_TaiKhoan.getX(), lb_Sdt.getY(), 320, font2, Color.BLACK);
 		add(tf_Sdt);
-		lb_Email = createLabel("Email:", 0, lb_Sdt.getY()+lb_Sdt.getHeight()+20, font2, Color.BLACK, GUI.colorTheme);
+		lb_Email = createLabel("Email:", 0, lb_Sdt.getY()+lb_Sdt.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
 		lb_Email.setLocation(lb_TaiKhoan.getX()-(lb_Email.getWidth()-lb_TaiKhoan.getWidth()), lb_Email.getY());
 		add(lb_Email);
 		tf_Email = createTextField(tf_TaiKhoan.getX(), lb_Email.getY(), 320, font2, Color.BLACK);
@@ -220,6 +217,7 @@ public class PanelCuaHangDK extends BasePanel{
 		pn_infoSP.add(bt_XacNhanSP);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void handleClick(String name) {
 		if(name.equals(BT_XACNHAN)) {
