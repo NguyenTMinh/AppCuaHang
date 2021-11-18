@@ -33,36 +33,36 @@ public class PanelPhienCH extends BasePanel{
         Font font = new Font("Tahoma",Font.PLAIN,20);
         Font small_font = new Font("Tahoma",Font.CENTER_BASELINE,15);
 
-        jLabel_UserName = creatLabel("UserName",10,12,small_font,Color.black,Color.white);
+        jLabel_UserName = createLabel("UserName",10,12,small_font,Color.black,Color.white);
         jLabel_UserName.setBackground(null);
         add(jLabel_UserName);
 
-        jButton_Logout = creatButton("Đăng xuất", jLabel_UserName.getWidth() + 15, 6,small_font,Color.black,"button_logout");
+        jButton_Logout = createButton("Đăng xuất", jLabel_UserName.getWidth() + 15, 6,small_font,Color.black,"button_logout");
         jButton_Logout.setSize(100,30);
         jButton_Logout.setFocusable(false);
         jButton_Logout.setBorder(BorderFactory.createEmptyBorder());
         jButton_Logout.setBackground(Color.decode("#d95a09"));
         add(jButton_Logout);
 
-        jLabel_TenCH = creatLabel("Tên cửa hàng",219,195,new Font("Tahoma",Font.CENTER_BASELINE,20),Color.black,Color.white);
-        jLabel_TenCH.setSize(350,28);
+        jLabel_TenCH = createLabel("Tên cửa hàng",219,180,new Font("Tahoma",Font.CENTER_BASELINE,20),Color.black,Color.white);
+        jLabel_TenCH.setSize(350,35);
         jLabel_TenCH.setBackground(null);
         jLabel_TenCH.setForeground(Color.decode("#d95a09"));
         add(jLabel_TenCH);
 
-        jButton_ListSP = creatButton("Danh sách sản phẩm",219,220,font,Color.black,"button_ListSP");
+        jButton_ListSP = createButton("Danh sách sản phẩm",219,220,font,Color.black,"button_ListSP");
         jButton_ListSP.setSize(350,50);
         jButton_ListSP.setFocusable(false);
         jButton_ListSP.setBackground(Color.decode("#97D7D3"));
         add(jButton_ListSP);
 
-        jButton_Doanhthu = creatButton("Doanh thu",219,290,font,Color.black,"button_doanhthu");
+        jButton_Doanhthu = createButton("Doanh thu",219,290,font,Color.black,"button_doanhthu");
         jButton_Doanhthu.setSize(350,50);
         jButton_Doanhthu.setFocusable(false);
         jButton_Doanhthu.setBackground(Color.decode("#97D7D3"));
         add(jButton_Doanhthu);
 
-        jButton_CnKhac = creatButton("Chức năng khác",219,360,font,Color.black,"button_cnkhac");
+        jButton_CnKhac = createButton("Chức năng khác",219,360,font,Color.black,"button_cnkhac");
         jButton_CnKhac.setSize(350,50);
         jButton_CnKhac.setFocusable(false);
         jButton_CnKhac.setBackground(Color.decode("#97D7D3"));

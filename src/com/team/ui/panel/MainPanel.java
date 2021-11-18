@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.swing.*;
 
+import com.team.logic.CuaHang;
+import com.team.logic.KhachHang;
 import com.team.logic.SanPhamCuaHang;
 import com.team.ui.ActionClick;
 
@@ -100,6 +102,41 @@ public class MainPanel extends BasePanel implements ActionClick{
 	@Override
 	public DefaultListModel<SanPhamCuaHang> getModel_SpCH() {
 		return panelAddSp.getModel_SpCH();
+	}
+
+	@Override
+	public void backToDangKy() {
+
+	}
+
+	@Override
+	public void addListKhachHang(KhachHang khachHang) {
+
+	}
+
+	@Override
+	public void toKhachHangDK() {
+
+	}
+
+	@Override
+	public void toCuaHangDK() {
+
+	}
+
+	@Override
+	public void addListCuaHang(CuaHang cuaHang) {
+
+	}
+
+	@Override
+	public void toDangKy() {
+
+	}
+
+	@Override
+	public void toDangNhap() {
+
 	}
 
 }
