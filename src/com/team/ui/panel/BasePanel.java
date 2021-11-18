@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import com.team.ui.ICommon;
 
@@ -21,7 +19,7 @@ public abstract class BasePanel extends JPanel implements ICommon{
 		addComp();
 	}
 	
-	protected JLabel creatLabel(String text,int x,int y,Font f, Color c,Color bg) {
+	protected JLabel createLabel(String text,int x,int y,Font f, Color c,Color bg) {
 		JLabel lb = new JLabel();
 		lb.setText(text);
 		lb.setLocation(x,y);
@@ -47,7 +45,18 @@ public abstract class BasePanel extends JPanel implements ICommon{
 		return tf;
 	}
 	
-	protected JButton creatButton(String text,int x,int y,Font f,Color c,String name) {
+	protected JPasswordField createPasswordField(int x,int y,int w,Font f,Color c) {
+		JPasswordField tf = new JPasswordField();
+		tf.setFont(f);
+		tf.setLocation(x, y);
+		FontMetrics fm = getFontMetrics(tf.getFont());
+		int hTfA = fm.getHeight();
+		tf.setSize(w, hTfA);
+		tf.setForeground(c);
+		return tf;
+	}
+	
+	protected JButton createButton(String text,int x,int y,Font f,Color c,String name) {
 		JButton bt = new JButton();
 		bt.setText(text);
 		bt.setFont(f);
@@ -62,17 +71,18 @@ public abstract class BasePanel extends JPanel implements ICommon{
 				handleClick(name);
 			}
 		});
-		bt.setBackground(Color.LIGHT_GRAY);
-		bt.setForeground(c);
 		bt.setOpaque(true);
+		bt.setBackground(Color.WHITE);
+		bt.setForeground(c);
 		bt.setLocation(x, y);
 		FontMetrics fm=getFontMetrics(bt.getFont());
-		int w=fm.stringWidth(bt.getText())+bt.getInsets().left*2;
-		int h=fm.getHeight()+getInsets().top*4;
+		int w=fm.stringWidth(bt.getText())+bt.getInsets().left*2 + 40;
+		int h=fm.getHeight()+getInsets().top*4 + 20;
 		bt.setSize(w, h);
 
 		return bt;
 	}
+	
 	
 	protected void handleClick(String name) {
 

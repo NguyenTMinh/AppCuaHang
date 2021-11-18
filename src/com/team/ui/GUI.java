@@ -16,6 +16,7 @@ public class GUI extends JFrame{
 	
 	public static final int H_SIZE = 650;
 	public static final int W_SIZE = 800;
+	public static final Color colorTheme = new Color(151,215,211);
 	private MainPanel mainPanel;
 	
 	public GUI() {
@@ -48,10 +49,9 @@ public class GUI extends JFrame{
 	//initUI hien thi GUI nhu nao
 	private void initUI() {
 		// TODO Auto-generated method stub
-		setTitle("English Game");
+		setTitle("Stores");
 		setSize(W_SIZE,H_SIZE);
 		setLocationRelativeTo(null);
-		getContentPane().setBackground(Color.PINK);
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLayout(new CardLayout());
