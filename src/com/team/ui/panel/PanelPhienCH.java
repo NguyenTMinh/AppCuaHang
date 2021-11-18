@@ -1,5 +1,6 @@
 package com.team.ui.panel;
 
+import com.team.logic.CuaHang;
 import com.team.ui.ActionClick;
 
 import javax.swing.*;
@@ -15,6 +16,8 @@ public class PanelPhienCH extends BasePanel{
     private JButton jButton_CnKhac;
 
     private ActionClick actionClick_ListSP;
+    
+    private CuaHang cuaHang;
 
     @Override
     public void initUI() {
@@ -74,11 +77,28 @@ public class PanelPhienCH extends BasePanel{
             actionClick_ListSP.acctionShowSP();
         }
         else if (name.equals("button_logout")){
+        	actionClick_ListSP.saveDataCH(cuaHang);
             actionClick_ListSP.goBacktoLogin();
         }
     }
+    
+	public void setjLabel_UserName(String name) {
+		this.jLabel_UserName.setText(name);
+	}
+	
+	public void setjLabel_TenCH(String name) {
+		this.jLabel_TenCH.setText(name);
+	}
 
-    public ActionClick getActionClick_ListSP() {
+	public CuaHang getCuaHang() {
+		return cuaHang;
+	}
+
+	public void setCuaHang(CuaHang cuaHang) {
+		this.cuaHang = cuaHang;
+	}
+
+	public ActionClick getActionClick_ListSP() {
         return actionClick_ListSP;
     }
 

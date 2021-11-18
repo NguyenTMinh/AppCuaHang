@@ -44,7 +44,7 @@ public class PanelCuaHangDK extends BasePanel{
 	@Override
 	public void initUI() {
 		setLayout(null);
-		setBackground(GUI.colerTheme);
+		setBackground(Color.WHITE);
 		setVisible(true);
 	}
 
@@ -65,10 +65,10 @@ public class PanelCuaHangDK extends BasePanel{
 		pn_infoSP.setLocation(x, 40);
 		pn_infoSP.setVisible(false);
 		add(pn_infoSP);
-		Icon icon = new ImageIcon("D:\\Downloads\\ic_arrow_back_ios1.png","comeback");
+		Icon icon = new ImageIcon(FileSystem.PATH_ICON_RETURN,"comeback");
 		lb_QuayLai = new JLabel("<html><u>Quay lại</u></html>", icon, JLabel.CENTER);
 		lb_QuayLai.setLocation(20, 20);
-		lb_QuayLai.setBackground(GUI.colerTheme);
+		lb_QuayLai.setBackground(Color.WHITE);
 		lb_QuayLai.setSize(100,40);
 		lb_QuayLai.setFont(font2);
 		lb_QuayLai.setOpaque(true);
@@ -99,40 +99,40 @@ public class PanelCuaHangDK extends BasePanel{
 			
 		});
 		add(lb_QuayLai);
-		lb_Title = createLabel(TITLE, 0, lb_QuayLai.getY()+lb_QuayLai.getHeight()+20, font1, Color.BLACK, GUI.colerTheme);
+		lb_Title = createLabel(TITLE, 0, lb_QuayLai.getY()+lb_QuayLai.getHeight()+20, font1, Color.BLACK, Color.WHITE);
 		x = GUI.W_SIZE/2 - lb_Title.getWidth()/2;
 		lb_Title.setLocation(x, lb_Title.getY());
 		add(lb_Title);
-		lb_TaiKhoan = createLabel("Tài khoản:", 150, lb_Title.getY()+lb_Title.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
+		lb_TaiKhoan = createLabel("Tài khoản:", 150, lb_Title.getY()+lb_Title.getHeight()+20, font2, Color.BLACK, Color.WHITE);
 		add(lb_TaiKhoan);
 		tf_TaiKhoan = createTextField(lb_TaiKhoan.getX()+lb_TaiKhoan.getWidth()+20, lb_TaiKhoan.getY(), 320, font2, Color.BLACK);
 		add(tf_TaiKhoan);
-		lb_MatKhau = createLabel("Mật khẩu:", lb_TaiKhoan.getX(), lb_TaiKhoan.getY()+lb_TaiKhoan.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
+		lb_MatKhau = createLabel("Mật khẩu:", lb_TaiKhoan.getX(), lb_TaiKhoan.getY()+lb_TaiKhoan.getHeight()+20, font2, Color.BLACK, Color.WHITE);
 		lb_MatKhau.setLocation(lb_TaiKhoan.getX()-(lb_MatKhau.getWidth()-lb_TaiKhoan.getWidth()), lb_MatKhau.getY());
 		add(lb_MatKhau);
 		tf_MatKhau = createPasswordField(tf_TaiKhoan.getX(), lb_MatKhau.getY(), 320, font2, Color.BLACK);
 		add(tf_MatKhau);
-		lb_ConfirmMK = createLabel("Xác nhận mật khẩu:", 0, lb_MatKhau.getY()+lb_MatKhau.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
+		lb_ConfirmMK = createLabel("Xác nhận mật khẩu:", 0, lb_MatKhau.getY()+lb_MatKhau.getHeight()+20, font2, Color.BLACK, Color.WHITE);
 		lb_ConfirmMK.setLocation(lb_TaiKhoan.getX()-(lb_ConfirmMK.getWidth()-lb_TaiKhoan.getWidth()), lb_ConfirmMK.getY());
 		add(lb_ConfirmMK);
 		tf_ConfirmMK = createPasswordField(tf_TaiKhoan.getX(), lb_ConfirmMK.getY(), 320, font2, Color.BLACK);
 		add(tf_ConfirmMK);
-		lb_TenShop = createLabel("Tên shop:", 0, lb_ConfirmMK.getY()+lb_ConfirmMK.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
+		lb_TenShop = createLabel("Tên shop:", 0, lb_ConfirmMK.getY()+lb_ConfirmMK.getHeight()+20, font2, Color.BLACK, Color.WHITE);
 		lb_TenShop.setLocation(lb_TaiKhoan.getX()-(lb_TenShop.getWidth()-lb_TaiKhoan.getWidth()), lb_TenShop.getY());
 		add(lb_TenShop);
 		tf_TenShop = createTextField(tf_TaiKhoan.getX(), lb_TenShop.getY(), 320, font2, Color.BLACK);
 		add(tf_TenShop);
-		lb_DiaChi = createLabel("Địa chỉ shop:", 0, lb_TenShop.getY()+lb_TenShop.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
+		lb_DiaChi = createLabel("Địa chỉ shop:", 0, lb_TenShop.getY()+lb_TenShop.getHeight()+20, font2, Color.BLACK, Color.WHITE);
 		lb_DiaChi.setLocation(lb_TaiKhoan.getX()-(lb_DiaChi.getWidth()-lb_TaiKhoan.getWidth()), lb_DiaChi.getY());
 		add(lb_DiaChi);
 		tf_DiaChi = createTextField(tf_TaiKhoan.getX(), lb_DiaChi.getY(), 320, font2, Color.BLACK);
 		add(tf_DiaChi);
-		lb_Sdt = createLabel("Số điện thoại:", 0, lb_DiaChi.getY()+lb_DiaChi.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
+		lb_Sdt = createLabel("Số điện thoại:", 0, lb_DiaChi.getY()+lb_DiaChi.getHeight()+20, font2, Color.BLACK, Color.WHITE);
 		lb_Sdt.setLocation(lb_TaiKhoan.getX()-(lb_Sdt.getWidth()-lb_TaiKhoan.getWidth()), lb_Sdt.getY());
 		add(lb_Sdt);
 		tf_Sdt = createTextField(tf_TaiKhoan.getX(), lb_Sdt.getY(), 320, font2, Color.BLACK);
 		add(tf_Sdt);
-		lb_Email = createLabel("Email:", 0, lb_Sdt.getY()+lb_Sdt.getHeight()+20, font2, Color.BLACK, GUI.colerTheme);
+		lb_Email = createLabel("Email:", 0, lb_Sdt.getY()+lb_Sdt.getHeight()+20, font2, Color.BLACK, Color.WHITE);
 		lb_Email.setLocation(lb_TaiKhoan.getX()-(lb_Email.getWidth()-lb_TaiKhoan.getWidth()), lb_Email.getY());
 		add(lb_Email);
 		tf_Email = createTextField(tf_TaiKhoan.getX(), lb_Email.getY(), 320, font2, Color.BLACK);
@@ -236,7 +236,7 @@ public class PanelCuaHangDK extends BasePanel{
 							addSanPham();
 						}else {
 							ack.addListCuaHang(cuaHang);
-							ack.backToDangKy();
+							ack.comeBack();
 						}
 						clearText();
 						

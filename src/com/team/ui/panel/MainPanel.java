@@ -28,7 +28,6 @@ public class MainPanel extends BasePanel implements ActionClick{
 	private PanelListSP panelListSP;
 	private PanelAddSp panelAddSp;
 	
-	
 	public MainPanel() {
 		listCuaHang = new ListCuaHang();
 		listKhachHang = new ListKhachHang();
@@ -50,15 +49,19 @@ public class MainPanel extends BasePanel implements ActionClick{
 		panelStartApp = new PanelStartApp();
 		panelStartApp.setAck(this);
 		add(panelStartApp);
+		
 		panelDangKy = new PanelDangKy();
 		panelDangKy.setAck(this);
 		add(panelDangKy);
+		
 		panelKhachHangDK = new PanelKhachHangDK();
 		panelKhachHangDK.setAck(this);
 		add(panelKhachHangDK);
+		
 		panelCuaHangDK = new PanelCuaHangDK();
 		panelCuaHangDK.setAck(this);
 		add(panelCuaHangDK);
+		
 		panelDangNhap = new PanelDangNhap();
 		panelDangNhap.setActionClick(this);
 		add(panelDangNhap);
@@ -75,17 +78,11 @@ public class MainPanel extends BasePanel implements ActionClick{
 		panelAddSp.setActionClick(this);
 		add(panelAddSp);
 	}
-
+	
 	@Override
 	public void actionClick() {
 		panelPhienCH.setVisible(true);
 		panelDangNhap.setVisible(false);
-	}
-	
-	@Override
-	public void dangKidangNhap() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -129,11 +126,13 @@ public class MainPanel extends BasePanel implements ActionClick{
 	
 	@Override
 	public void toDangNhap() {
-		
+		panelStartApp.setVisible(false);
+		panelDangNhap.setVisible(true);
 	}
 	
 	@Override
 	public void comeBack() {
+		panelDangNhap.setVisible(false);
 		panelCuaHangDK.setVisible(false);
 		panelKhachHangDK.setVisible(false);
 		panelDangKy.setVisible(false);
@@ -190,5 +189,56 @@ public class MainPanel extends BasePanel implements ActionClick{
 	public List<KhachHang> getListKH() {
 		return this.listKhachHang.getKhachHangs();
 	}
+
+	@Override
+	public int getRole() {
+		return panelStartApp.getRoleAccount();
+	}
+
+	@Override
+	public void passDataCHToPanel(CuaHang cuaHang) {
+		panelPhienCH.setCuaHang(cuaHang);
+	}
+
+	@Override
+	public void goToPhienCH() {
+		panelDangNhap.setVisible(false);
+		panelPhienCH.setVisible(true);
+	}
 	
+	@Override
+	public void setUserNameCH(String username, String shopname) {
+		panelPhienCH.setjLabel_UserName(username);
+		panelPhienCH.setjLabel_TenCH(shopname);
+	}
+	
+	//dang nhap vao khach hang 
+	@Override
+	public void passDataKHToPanel(KhachHang khachHang) {
+		
+	}
+
+	@Override
+	public void setUserNameKH(String name) {
+		
+	}
+
+	@Override
+	public void saveDataCH(CuaHang cuaHang) {
+		for (int i = 0; i < listCuaHang.getCuaHangs().size(); i++) {
+			if(cuaHang.getTaiKhoan().equals(listCuaHang.getCuaHangs().get(i).getTaiKhoan())) {
+				listCuaHang.getCuaHangs().set(i, cuaHang);
+				break;
+			}
+		}
+		try {
+			listCuaHang.writeDataToFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
+
 }

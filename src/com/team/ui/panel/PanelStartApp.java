@@ -24,12 +24,15 @@ public class PanelStartApp extends BasePanel{
 	private static final String BT_DANGKY = "BT_DANGKY";
 	private JLabel lb_AppName, lb_BanLa, lb_DangKy;
 	private JButton bt_CuaHang, bt_KhachHang, bt_DangKy;
+	private ActionClick ack;
+	private int roleAccount;
+
 	
 	@Override
 	public void initUI() {
 		setLayout(null);
 		setVisible(true);
-		setBackground(GUI.colerTheme);
+		setBackground(Color.WHITE);
 	}
 
 	@Override
@@ -71,9 +74,11 @@ public class PanelStartApp extends BasePanel{
 	@Override
 	protected void handleClick(String name) {
 		if(name.equals(BT_CUAHANG)) {
+			setRoleAccount(0);
 			ack.toDangNhap();
 		}
 		if(name.equals(BT_KHACHHANG)) {
+			setRoleAccount(1);
 			ack.toDangNhap();
 		}
 		if(name.equals(BT_DANGKY)) {
@@ -81,7 +86,14 @@ public class PanelStartApp extends BasePanel{
 		}
 	}
 	
-	private ActionClick ack;
+	
+	public int getRoleAccount() {
+		return roleAccount;
+	}
+
+	private void setRoleAccount(int roleAccount) {
+		this.roleAccount = roleAccount;
+	}
 
 	public ActionClick getAck() {
 		return ack;

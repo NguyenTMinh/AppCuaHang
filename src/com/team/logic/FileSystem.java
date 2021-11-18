@@ -13,7 +13,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class FileSystem {
-	public static String PATH_IMAGE_DEFAULT = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\ic_photo_size_select_actual.png";
+	public static final String PATH_IMAGE_DEFAULT = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\ic_photo_size_select_actual.png";
+	public static final String PATH_ICON_RETURN = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\ic_arrow_back_ios1.png";
 
 	public static void getSanPhamKHFromFile(String path,KhachHang khachHang) throws IOException{
 		List<SanPhamKhachHang> gioHang = new ArrayList<>();

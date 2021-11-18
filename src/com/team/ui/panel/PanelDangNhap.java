@@ -1,10 +1,13 @@
 package com.team.ui.panel;
 
+import com.team.logic.FileSystem;
 import com.team.ui.ActionClick;
 import com.team.ui.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Objects;
 
 public class PanelDangNhap extends BasePanel{
@@ -17,9 +20,8 @@ public class PanelDangNhap extends BasePanel{
     private JPasswordField jPasswordField_Pass;
 
     private JButton jButton_Login;
-    private JButton jButton_Return;
-
     private ActionClick actionClick;
+	private JLabel lb_QuayLai;
 
     @Override
     public void initUI() {
@@ -38,6 +40,7 @@ public class PanelDangNhap extends BasePanel{
         Font big_font = new Font("Tahoma",Font.PLAIN,60);
         Font font = new Font("Tahoma",Font.PLAIN,30);
         Font small_font = new Font("Tahoma",Font.PLAIN,20);
+        Font font2 = new Font("Tahoma", Font.BOLD, 15);
 
         jLabel_Title = createLabel("STORE",290,50,big_font,Color.BLACK,null);
         jLabel_Title.setSize(220,60);
@@ -64,21 +67,76 @@ public class PanelDangNhap extends BasePanel{
         jButton_Login.setBackground(Color.decode("#97D7D3"));
         add(jButton_Login);
 
-        jButton_Return = createButton("Quay lại",10,10,new Font("Tahoma",Font.PLAIN,16),Color.black,"button_return");
-        jButton_Return.setBackground(null);
-        jButton_Return.setBorder(null);
-        jButton_Return.setSize(90,30);
-        add(jButton_Return);
+        Icon icon = new ImageIcon(FileSystem.PATH_ICON_RETURN,"comeback");
+		lb_QuayLai = new JLabel("<html><u>Quay lại</u></html>", icon, JLabel.CENTER);
+		lb_QuayLai.setLocation(20, 20);
+		lb_QuayLai.setBackground(Color.WHITE);
+		lb_QuayLai.setSize(100,40);
+		lb_QuayLai.setFont(font2);
+		lb_QuayLai.setOpaque(true);
+		lb_QuayLai.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				actionClick.comeBack();
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lb_QuayLai.setForeground(Color.BLUE);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lb_QuayLai.setForeground(Color.BLACK);
+			}
+		});
+		add(lb_QuayLai);
     }
 
     @Override
     protected void handleClick(String name) {
         if(name.equals("button_login")){
-            actionClick.actionClick();
+        	if(jTextField_Acc.getText().equals("") || jPasswordField_Pass.getText().equals("")) {
+        		JOptionPane.showConfirmDialog(null, "Mời bạn nhập đầy đủ thông tin", "Error", JOptionPane.CLOSED_OPTION);
+        	}else {
+        		if(checkValidAccount(jTextField_Acc.getText(), jPasswordField_Pass.getText(),actionClick.getRole())) {
+        			JOptionPane.showConfirmDialog(null, "Đăng nhập thành công", "Stores", JOptionPane.CLOSED_OPTION);
+        			actionClick.goToPhienCH();
+        		}else {
+        			JOptionPane.showConfirmDialog(null, "Đăng nhập không thành công,\nvui lòng thử lại", "Error", JOptionPane.CLOSED_OPTION);
+        		}
+        	}
         }
-        else System.out.println("Sai");
+    }
+ 
+    private boolean checkValidAccount(String acc, String pass,int role){
+    	if(role == 0) {
+    		for (int i = 0; i < actionClick.getListCH().size(); i++) {
+    			if(acc.equals(actionClick.getListCH().get(i).getTaiKhoan()) && pass.equals(actionClick.getListCH().get(i).getMatKhau())) {
+    				actionClick.passDataCHToPanel(actionClick.getListCH().get(i));
+    				actionClick.setUserNameCH(actionClick.getListCH().get(i).getTaiKhoan(), actionClick.getListCH().get(i).getTenShop());
+    				return true;
+    			}
+    		}
+        	return false;
+    	}else{
+    		for (int i = 0; i < actionClick.getListKH().size(); i++) {
+    			if(acc.equals(actionClick.getListKH().get(i).getTaiKhoan()) && pass.equals(actionClick.getListKH().get(i).getMatKhau())) {
+    				actionClick.passDataKHToPanel(actionClick.getListKH().get(i));
+    				//khach hang chua xong
+    				return true;
+    			}
+    		}
+        	return false;
+    	}
+    	
     }
 
+    private void clearText() {
+    	jTextField_Acc.setText("");
+    	jPasswordField_Pass.setText("");
+    }
+    
     public ActionClick getActionClick() {
         return actionClick;
     }
