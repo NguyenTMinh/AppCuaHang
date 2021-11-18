@@ -25,9 +25,10 @@ public class PanelAddSp extends BasePanel{
     private JButton button_Xacnhan;
     private JButton button_return;
 
-    private PanelListSP panelListSP = panelListSP = new PanelListSP();
+    private PanelListSP panelListSP = new PanelListSP();
 
     private DefaultListModel<SanPhamCuaHang> model_SpCH = (DefaultListModel<SanPhamCuaHang>) panelListSP.getListsanphamCH().getModel();
+    
     @Override
     public void initUI() {
         setLayout(null);
@@ -102,6 +103,7 @@ public class PanelAddSp extends BasePanel{
             actionClick.acctionShowSP();
         }
     }
+    
     private ActionClick actionClick;
 
     public ActionClick getActionClick() {

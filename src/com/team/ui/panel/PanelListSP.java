@@ -1,23 +1,22 @@
 package com.team.ui.panel;
 
+import com.team.logic.FileSystem;
 import com.team.logic.SanPhamCuaHang;
 import com.team.ui.ActionClick;
 import com.team.ui.GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PanelListSP extends BasePanel {
-    private JButton jButton_Return;
     private JButton jButton_findSp;
     private JButton jButton_addSp;
     private JButton jButton_deleteSp;
@@ -25,7 +24,6 @@ public class PanelListSP extends BasePanel {
     private JButton jButton_showAllSp;
 
     private JLabel jLabel_TitleSp;
-    private JLabel jLabel_iconReturn;
     private JList<SanPhamCuaHang> listsanphamCH;
     private DefaultListModel<SanPhamCuaHang> model_sp;
 
@@ -57,6 +55,8 @@ public class PanelListSP extends BasePanel {
 
     JButton button_Xacnhan;
     JButton button_return;
+	private JLabel lb_QuayLai;
+	private List<SanPhamCuaHang> listSPCH;
 
     @Override
     public void initUI() {
@@ -73,38 +73,48 @@ public class PanelListSP extends BasePanel {
     @Override
     public void addComp() {
         Font sp_font = new Font("Tahoma",Font.PLAIN,20);
+        Font font2 = new Font("Tahoma", Font.BOLD, 15);
 
         jLabel_TitleSp = createLabel("Sản phẩm",280,35,new Font("Helvetica Neue",Font.CENTER_BASELINE,50),Color.black,Color.white);
         jLabel_TitleSp.setSize(300,60);
         add(jLabel_TitleSp);
 
-        jButton_Return = createButton("Quay lại",30,8,new Font("Tahoma",Font.PLAIN,16),Color.black,"button_return");
-        jButton_Return.setBackground(null);
-        jButton_Return.setBorder(null);
-        jButton_Return.setFocusable(false);
-        jButton_Return.setSize(80,30);
-        add(jButton_Return);
+        Icon icon = new ImageIcon(FileSystem.PATH_ICON_RETURN,"comeback");
+		lb_QuayLai = new JLabel("<html><u>Quay lại</u></html>", icon, JLabel.CENTER);
+		lb_QuayLai.setLocation(20, 20);
+		lb_QuayLai.setBackground(Color.WHITE);
+		lb_QuayLai.setSize(100,40);
+		lb_QuayLai.setFont(font2);
+		lb_QuayLai.setOpaque(true);
+		lb_QuayLai.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!lb_QuayLai.isEnabled()) {
+					return;
+				}
+				clearText();
+				actionClick.goBacktoPhienCH();
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(!lb_QuayLai.isEnabled()) {
+					return;
+				}
+				lb_QuayLai.setForeground(Color.BLUE);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(!lb_QuayLai.isEnabled()) {
+					return;
+				}
+				lb_QuayLai.setForeground(Color.BLACK);
+			}
+		});
+		add(lb_QuayLai);
 
-        jLabel_iconReturn = new JLabel();
-        jLabel_iconReturn.setBounds(10,10,20,25);
-        try {
-            Image img = ImageIO.read(getClass().getResource("../Picture/return-48_45247.png"));
-            Image dimg = img.getScaledInstance(jLabel_iconReturn.getWidth(), jLabel_iconReturn.getHeight(),
-                    Image.SCALE_SMOOTH);
-            jLabel_iconReturn.setIcon(new ImageIcon(dimg));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        add(jLabel_iconReturn);
-
-        try {
-            image_quanDai = ImageIO.read(new File("src/com/team/ui/Picture/quandai.png"));
-            image_aoPhong = ImageIO.read(new File("src/com/team/ui/Picture/aophong.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        imageIcon_Quandai = new ImageIcon(image_quanDai.getScaledInstance(100,100,Image.SCALE_SMOOTH));
-        imageIcon_aoPhong = new ImageIcon(image_aoPhong.getScaledInstance(100,100,Image.SCALE_SMOOTH));
+        
 
         // Tao JList
         jPanel_main = new JPanel(); // Táº¡o PanelMain Ä‘á»ƒ chá»©a
@@ -112,20 +122,34 @@ public class PanelListSP extends BasePanel {
         jPanel_main.setBackground(Color.decode("#97D7D3"));
         jPanel_main.setLayout(new BorderLayout());
 
-        model_sp = new DefaultListModel<>(); // Táº¡o model Ä‘á»ƒ add vÃ o JList -- má»—i model lÃ  thá»ƒ hiá»‡n cho 1 sáº£n pháº©m cá»§a cá»­a hÃ ng
-        model_sp.addElement(new SanPhamCuaHang("1","Ã�o thun","Ã�o","Ã�o cao cáº¥p",20,150,imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("2","Ã�o dÃ i tay","Ã�o","Ã�o cao cáº¥p",20,200,imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("3","Ã�o phÃ´ng ","Ã�o","Ã�o cao cáº¥p",20,150,imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("4","Ã�o sÆ¡ mi","Ã�o","Ã�o cao cáº¥p",20,350,imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("5","Quáº§n Ä‘Ã¹i","Quáº§n","Quáº§n cao cáº¥p",20,200,imageIcon_Quandai));
-        model_sp.addElement(new SanPhamCuaHang("6","Quáº§n dÃ i","Quáº§n","Quáº§n cao cáº¥p",20,250,imageIcon_Quandai));
+        try {
+            image_quanDai = ImageIO.read(new File("src/com/team/ui/Picture/quandai.png"));
+            image_aoPhong = ImageIO.read(new File("src/com/team/ui/Picture/aophong.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        imageIcon_aoPhong = new ImageIcon(image_aoPhong.getScaledInstance(100,100,Image.SCALE_SMOOTH));
+        listSPCH = new ArrayList<>();
+        model_sp = new DefaultListModel<>();
+       
+//        imageIcon_Quandai = new ImageIcon(image_quanDai.getScaledInstance(100,100,Image.SCALE_SMOOTH));
+        imageIcon_aoPhong = new ImageIcon(image_aoPhong.getScaledInstance(100,100,Image.SCALE_SMOOTH));	// Táº¡o model Ä‘á»ƒ add vÃ o JList -- má»—i model lÃ  thá»ƒ hiá»‡n cho 1 sáº£n pháº©m cá»§a cá»­a hÃ ng
+//        model_sp.addElement(new SanPhamCuaHang("1","Ã�o thun","Ã�o","Ã�o cao cáº¥p",20,150,imageIcon_aoPhong));
+//        model_sp.addElement(new SanPhamCuaHang("2","Ã�o dÃ i tay","Ã�o","Ã�o cao cáº¥p",20,200,imageIcon_aoPhong));
+//        model_sp.addElement(new SanPhamCuaHang("3","Ã�o phÃ´ng ","Ã�o","Ã�o cao cáº¥p",20,150,imageIcon_aoPhong));
+//        model_sp.addElement(new SanPhamCuaHang("4","Ã�o sÆ¡ mi","Ã�o","Ã�o cao cáº¥p",20,350,imageIcon_aoPhong));
+//        model_sp.addElement(new SanPhamCuaHang("5","Quáº§n Ä‘Ã¹i","Quáº§n","Quáº§n cao cáº¥p",20,200,imageIcon_Quandai));
+//        model_sp.addElement(new SanPhamCuaHang("6","Quáº§n dÃ i","Quáº§n","Quáº§n cao cáº¥p",20,250,imageIcon_Quandai));
 
         listsanphamCH = new JList<>(model_sp); // khá»Ÿi táº¡o JList vá»›i cÃ¡c thÃ nh pháº§n bÃªn trong lÃ  cÃ¡c model
         listsanphamCH.setCellRenderer(new PanelSanPhamRender());
-        jPanel_main.add(new JScrollPane(listsanphamCH),BorderLayout.CENTER); // add Jlist vÃ o trong 1 ScrollPane , sau Ä‘Ã³ add ScrollPane vÃ o cÃ¡i PanelMain
+        jPanel_main.add(new JScrollPane(listsanphamCH),BorderLayout.CENTER);
+
 
         add(jPanel_main); // add PanelMain vÃ o Panel chÃ­nh
-
+//        model_sp.addElement(new SanPhamCuaHang("1","Ã�o thun","Ã�o","Ã�o cao cáº¥p",20,150,imageIcon_aoPhong));
+//        listsanphamCH.setModel(model_sp);// add Jlist vÃ o trong 1 ScrollPane , sau Ä‘Ã³ add ScrollPane vÃ o cÃ¡i PanelMain
 
         jButton_addSp = createButton("Thêm sản phẩm",280,515,sp_font,Color.black,"button_addsp");
         jButton_addSp.setSize(230,40);
@@ -213,7 +237,7 @@ public class PanelListSP extends BasePanel {
         add(panel_editSp);
     }
 
-    @Override
+	@Override
     protected void handleClick(String name) {
         if (name.equals("button_addsp")){
             this.addSp();
@@ -224,11 +248,7 @@ public class PanelListSP extends BasePanel {
             this.deleteSp();
             return;
         }
-
-        if (name.equals("button_return")){
-            actionClick.goBacktoPhienCH();
-        }
-
+        
         if(name.equals("button_editsp")){
             this.editSp();
             return;
@@ -295,6 +315,12 @@ public class PanelListSP extends BasePanel {
         }
         listsanphamCH.setModel(model);
     }
+    
+    public void passDataFromListToModel() {
+		if(listSPCH.size() > 0) {
+			model_sp.addAll(listSPCH);
+		}
+	}
 
     private void editSp(){
         panel_editSp.setVisible(true);
@@ -317,6 +343,7 @@ public class PanelListSP extends BasePanel {
 
     public void setModelList(DefaultListModel<SanPhamCuaHang> model) {
         listsanphamCH.setModel(model);
+//        listsanphamCH.updateUI();
     }
 
     public JList<SanPhamCuaHang> getListsanphamCH() {
@@ -328,26 +355,23 @@ public class PanelListSP extends BasePanel {
     }
 
     public void remove_PanelListSp(){
-        jButton_Return.setVisible(false);
+    	lb_QuayLai.setEnabled(false);
         jButton_findSp.setVisible(false);
         jButton_addSp.setVisible(false);
         jButton_deleteSp.setVisible(false);
         jButton_editSp.setVisible(false);
         jLabel_TitleSp.setVisible(false);
         jPanel_main.setVisible(false);
-        jLabel_iconReturn.setVisible(false);
         jButton_showAllSp.setVisible(false);
         textField_findSp.setVisible(false);
     }
     public void show_PanelList(){
-        jButton_Return.setVisible(true);
         jButton_findSp.setVisible(true);
         jButton_addSp.setVisible(true);
         jButton_deleteSp.setVisible(true);
         jButton_editSp.setVisible(true);
         jLabel_TitleSp.setVisible(true);
         jPanel_main.setVisible(true);
-        jLabel_iconReturn.setVisible(true);
         jButton_showAllSp.setVisible(true);
         textField_findSp.setVisible(true);
     }
@@ -359,4 +383,17 @@ public class PanelListSP extends BasePanel {
         textField_soLuong.setText("");
         textField_giaTien.setText("");
     }
+    
+    private void clearText() {
+    	textField_findSp.setText("");
+    }
+
+	public List<SanPhamCuaHang> getListSPCH() {
+		return listSPCH;
+	}
+
+	public void setListSPCH(List<SanPhamCuaHang> listSPCH) {
+		this.listSPCH = listSPCH;
+	}
+    
 }

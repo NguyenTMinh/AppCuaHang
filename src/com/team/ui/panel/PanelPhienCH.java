@@ -74,11 +74,11 @@ public class PanelPhienCH extends BasePanel{
     @Override
     protected void handleClick(String name) {
         if (name.equals("button_ListSP")){
-            actionClick_ListSP.acctionShowSP();
+        	actionClick_ListSP.passListSPCHToPanelList(cuaHang.getSanPhamCuaHangs());
         }
         else if (name.equals("button_logout")){
         	actionClick_ListSP.saveDataCH(cuaHang);
-            actionClick_ListSP.goBacktoLogin();
+            actionClick_ListSP.comeBack();
         }
     }
     

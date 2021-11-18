@@ -26,7 +26,6 @@ public class PanelStartApp extends BasePanel{
 	private JButton bt_CuaHang, bt_KhachHang, bt_DangKy;
 	private ActionClick ack;
 	private int roleAccount;
-
 	
 	@Override
 	public void initUI() {

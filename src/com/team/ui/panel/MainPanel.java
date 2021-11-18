@@ -132,6 +132,7 @@ public class MainPanel extends BasePanel implements ActionClick{
 	
 	@Override
 	public void comeBack() {
+		panelPhienCH.setVisible(false);
 		panelDangNhap.setVisible(false);
 		panelCuaHangDK.setVisible(false);
 		panelKhachHangDK.setVisible(false);
@@ -239,6 +240,16 @@ public class MainPanel extends BasePanel implements ActionClick{
 		}
 	}
 
-	
+	@Override
+	public void passListSPCHToPanelList(List<SanPhamCuaHang> list) {
+		panelListSP.setListSPCH(list);
+		DefaultListModel<SanPhamCuaHang> model = new DefaultListModel<>();
+		if(list.size()>0) {
+			model.addAll(list);
+		}
+		panelListSP.setModelList(model);
+		panelListSP.setVisible(true);
+		panelPhienCH.setVisible(false);
+	}
 
 }

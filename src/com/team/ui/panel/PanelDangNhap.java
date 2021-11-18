@@ -101,6 +101,7 @@ public class PanelDangNhap extends BasePanel{
         	}else {
         		if(checkValidAccount(jTextField_Acc.getText(), jPasswordField_Pass.getText(),actionClick.getRole())) {
         			JOptionPane.showConfirmDialog(null, "Đăng nhập thành công", "Stores", JOptionPane.CLOSED_OPTION);
+        			clearText();
         			actionClick.goToPhienCH();
         		}else {
         			JOptionPane.showConfirmDialog(null, "Đăng nhập không thành công,\nvui lòng thử lại", "Error", JOptionPane.CLOSED_OPTION);
