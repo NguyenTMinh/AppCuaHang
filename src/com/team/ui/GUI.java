@@ -18,7 +18,7 @@ public class GUI extends JFrame{
 	public static final int H_SIZE = 650;
 	public static final int W_SIZE = 800;
 	private MainPanel mainPanel;
-	
+
 	public GUI() {
 		initUI();
 		addEvent();
@@ -39,6 +39,7 @@ public class GUI extends JFrame{
 				int result = JOptionPane.showConfirmDialog(null, "Do you want to close",
 						"Confirm",JOptionPane.YES_NO_OPTION);
 				if( result == JOptionPane.YES_OPTION) {
+					mainPanel.saveDataCH(mainPanel.getCurrentCuaHang());
 					dispose();
 				}
 			}
@@ -62,4 +63,5 @@ public class GUI extends JFrame{
 		  }catch (Exception e) { e.printStackTrace(); }
 		
 	}
+
 }

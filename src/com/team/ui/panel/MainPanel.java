@@ -261,4 +261,9 @@ public class MainPanel extends BasePanel implements ActionClick{
 	public void passListSPCHToPanelPhienCH(List<SanPhamCuaHang> list) {
 		panelPhienCH.setListToCH(list);	
 	}
+
+	@Override
+	public CuaHang getCurrentCuaHang() {
+		return panelPhienCH.getCuaHang();
+	}
 }
