@@ -24,7 +24,7 @@ public class PanelPhienCH extends BasePanel{
     @Override
     public void initUI() {
         setLayout(null);
-        setBackground(Color.decode("#88a8a7"));
+        setBackground(Color.WHITE);
         setVisible(true);
     }
 
@@ -39,33 +39,21 @@ public class PanelPhienCH extends BasePanel{
         Font small_font = new Font("Tahoma",Font.CENTER_BASELINE,15);
 
         jLabel_UserName = createLabel("UserName",10,12,small_font,Color.black,Color.white);
-<<<<<<< HEAD
-        add(jLabel_UserName);
-
-        jButton_Logout = createButton("Đăng xuất", jLabel_UserName.getWidth() + 12, 6,small_font,Color.black,"button_logout");
-=======
         jLabel_UserName.setBackground(null);
         add(jLabel_UserName);
 
         jButton_Logout = createButton("Đăng xuất", jLabel_UserName.getWidth() + 15, 6,small_font,Color.black,"button_logout");
->>>>>>> b192212cabd4f4165f9eee7e7ab90aed9e1c8ad4
         jButton_Logout.setSize(100,30);
         jButton_Logout.setFocusable(false);
         jButton_Logout.setBorder(BorderFactory.createEmptyBorder());
         jButton_Logout.setBackground(Color.decode("#d95a09"));
         add(jButton_Logout);
-
-<<<<<<< HEAD
         
         //TEN CUA HANG SE DUOC THAY THE SAU #########
-        jLabel_TenCH = createLabel("Tên cửa hàng",219,190,small_font,Color.black,Color.white);
-        jLabel_TenCH.setSize(350,25);
-=======
         jLabel_TenCH = createLabel("Tên cửa hàng",219,180,new Font("Tahoma",Font.CENTER_BASELINE,20),Color.black,Color.white);
         jLabel_TenCH.setSize(350,35);
         jLabel_TenCH.setBackground(null);
         jLabel_TenCH.setForeground(Color.decode("#d95a09"));
->>>>>>> b192212cabd4f4165f9eee7e7ab90aed9e1c8ad4
         add(jLabel_TenCH);
 
         jButton_ListSP = createButton("Danh sách sản phẩm",219,220,font,Color.black,"button_ListSP");

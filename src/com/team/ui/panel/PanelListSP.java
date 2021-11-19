@@ -251,25 +251,7 @@ public class PanelListSP extends BasePanel {
         }
         
         if(name.equals("button_editsp")){
-            if (onPanel_SpCantim == false){
-                if (listsanphamCH.getSelectedIndex()<0){
-                    JOptionPane.showConfirmDialog(this,"Sản phẩm chưa được chọn","Error",JOptionPane.CLOSED_OPTION);
-                }
-                else {
-                    this.editSp();
-                    return;
-                }
-            }
-            else {
-                if (listsanphamCH_SpCanTim.getSelectedIndex()<0){
-                    JOptionPane.showConfirmDialog(this,"Sản phẩm chưa được chọn","Error",JOptionPane.CLOSED_OPTION);
-                }
-                else {
-                    panel_editSp.setVisible(true);
-                    panel_List_spCantim.setVisible(false);
-                    remove_PanelListSp();
-                }
-            }
+            editSp();
         }
 
         if (name.equals("button_returnList")){
