@@ -93,6 +93,7 @@ public class PanelListSP extends BasePanel {
 					return;
 				}
 				clearText();
+				actionClick.passListSPCHToPanelPhienCH(listSPCH);
 				actionClick.goBacktoPhienCH();
 			}
 			
@@ -240,7 +241,7 @@ public class PanelListSP extends BasePanel {
 	@Override
     protected void handleClick(String name) {
         if (name.equals("button_addsp")){
-            this.addSp();
+        	actionClick.addSp();
             return;
         }
 
@@ -309,11 +310,16 @@ public class PanelListSP extends BasePanel {
         }
     }
     private void deleteSp(){
-        DefaultListModel<SanPhamCuaHang> model = (DefaultListModel<SanPhamCuaHang>) listsanphamCH.getModel();
-        if (!model.isEmpty() && listsanphamCH.getSelectedIndex()>=0){
-            model.remove(listsanphamCH.getSelectedIndex());
+        if (!model_sp.isEmpty() && listsanphamCH.getSelectedIndex()>=0){
+        	listSPCH.remove(listsanphamCH.getSelectedIndex());
+        	cleanModel();
+        	passDataFromListToModel();
         }
-        listsanphamCH.setModel(model);
+        listsanphamCH.setModel(model_sp);
+    }
+    
+    private void cleanModel() {
+    	model_sp.removeAllElements();
     }
     
     public void passDataFromListToModel() {
@@ -327,10 +333,6 @@ public class PanelListSP extends BasePanel {
         remove_PanelListSp();
     }
 
-    private void addSp(){
-        actionClick.addSp();
-    }
-
     private ActionClick actionClick;
 
     public ActionClick getActionClick() {
@@ -339,11 +341,6 @@ public class PanelListSP extends BasePanel {
 
     public void setActionClick(ActionClick actionClick) {
         this.actionClick = actionClick;
-    }
-
-    public void setModelList(DefaultListModel<SanPhamCuaHang> model) {
-        listsanphamCH.setModel(model);
-//        listsanphamCH.updateUI();
     }
 
     public JList<SanPhamCuaHang> getListsanphamCH() {
@@ -396,4 +393,17 @@ public class PanelListSP extends BasePanel {
 		this.listSPCH = listSPCH;
 	}
     
+	public void addList(SanPhamCuaHang sp) {
+		listSPCH.add(sp);
+	}
+
+	public DefaultListModel<SanPhamCuaHang> getModel_sp() {
+		return model_sp;
+	}
+
+	public void setModel_sp(DefaultListModel<SanPhamCuaHang> model_sp) {
+		this.model_sp = model_sp;
+		listsanphamCH.setModel(this.model_sp);
+	}
+	
 }

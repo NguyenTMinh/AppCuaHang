@@ -46,6 +46,7 @@ public class FileSystem {
 	public static String writeSanPhamKHToFile(KhachHang owner) throws IOException{
 		String path = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\"+owner.getSdt()+".txt";
 		File file = new File(path);
+		file.delete();
 		file.createNewFile();
 		RandomAccessFile raf = new RandomAccessFile(file, "rw");
 		for(int i = 0; i < owner.getLishSuMuaHang().size(); i++) {
@@ -80,10 +81,11 @@ public class FileSystem {
 	public static String writeSanPhamCHToFile(CuaHang owner) throws IOException{
 		String path = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\"+owner.getSdtShop()+".txt";
 		File file = new File(path);
+		file.delete();
 		file.createNewFile();
 		RandomAccessFile raf = new RandomAccessFile(file, "rw");
 		for (int i = 0; i < owner.getSanPhamCuaHangs().size(); i++) {
-			raf.writeBytes(owner.getSanPhamCuaHangs().get(i).getInfos());
+			raf.writeBytes(owner.getSanPhamCuaHangs().get(i).getInfos() + "\n");
 		}
 		raf.close();
 		return path;

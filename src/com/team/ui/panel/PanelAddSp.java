@@ -1,10 +1,15 @@
 package com.team.ui.panel;
 
+import com.team.logic.FileSystem;
 import com.team.logic.SanPhamCuaHang;
 import com.team.ui.ActionClick;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class PanelAddSp extends BasePanel{
     private JTextField textField_maSp;
@@ -13,6 +18,7 @@ public class PanelAddSp extends BasePanel{
     private JTextField textField_thongtinChiTiet;
     private JTextField textField_soLuong;
     private JTextField textField_giaTien;
+    private JTextField textField_anh;
 
     private JLabel label_TitleaddSp;
     private JLabel label_maSp;
@@ -21,13 +27,13 @@ public class PanelAddSp extends BasePanel{
     private JLabel label_thongtinChiTiet;
     private JLabel label_soLuong;
     private JLabel label_giaTien;
+    private JLabel label_anh;
 
     private JButton button_Xacnhan;
     private JButton button_return;
+    private JButton button_anh;
 
-    private PanelListSP panelListSP = new PanelListSP();
-
-    private DefaultListModel<SanPhamCuaHang> model_SpCH = (DefaultListModel<SanPhamCuaHang>) panelListSP.getListsanphamCH().getModel();
+    private DefaultListModel<SanPhamCuaHang> model_SpCH;
     
     @Override
     public void initUI() {
@@ -51,6 +57,8 @@ public class PanelAddSp extends BasePanel{
         textField_thongtinChiTiet = createTextField(200,300,400,small_font,Color.black);
         textField_soLuong = createTextField(200,350,400,small_font,Color.black);
         textField_giaTien = createTextField(200,400,400,small_font,Color.black);
+        textField_anh =createTextField(200, 450, 300, small_font, Color.black);
+        textField_anh.setEditable(false);
 
         label_TitleaddSp = createLabel("Thêm sản phẩm",210,35,new Font("Helvetica Neue",Font.CENTER_BASELINE,50),Color.black,Color.white);
         label_TitleaddSp.setSize(400,60);
@@ -63,9 +71,13 @@ public class PanelAddSp extends BasePanel{
         label_thongtinChiTiet = createLabel("Chi tiết",40,298,small_font,Color.decode("#e05ccf"),null);
         label_soLuong = createLabel("Số lượng",40,348,small_font,Color.decode("#e05ccf"),null);
         label_giaTien = createLabel("Giá",40,398,small_font,Color.decode("#e05ccf"),null);
+        label_anh = createLabel("Ảnh sản phẩm", 40, 448, small_font, Color.decode("#e05ccf"), null);
+        
 
         button_Xacnhan = createButton("Xác nhận",320,500,new Font("Helvetica Neue",Font.CENTER_BASELINE,25),Color.black,"button_xacNhanAddSp");
         button_return = createButton("Trở lại",5,5,small_font,Color.black,"button_return");
+        button_anh = createButton("...",550 , textField_anh.getY(), small_font, Color.black, "BT_ANH");
+        button_anh.setSize(50, textField_anh.getHeight());
 
         add(textField_maSp);
         add(textField_tenSp);
@@ -73,6 +85,7 @@ public class PanelAddSp extends BasePanel{
         add(textField_thongtinChiTiet);
         add(textField_soLuong);
         add(textField_giaTien);
+        add(textField_anh);
 
         add(label_TitleaddSp);
         add(label_maSp);
@@ -81,9 +94,11 @@ public class PanelAddSp extends BasePanel{
         add(label_thongtinChiTiet);
         add(label_soLuong);
         add(label_giaTien);
+        add(label_anh);
 
         add(button_Xacnhan);
         add(button_return);
+        add(button_anh);
     }
 
     @Override
@@ -93,14 +108,44 @@ public class PanelAddSp extends BasePanel{
                 JOptionPane.showConfirmDialog(null,"Hãy nhập đầy đủ","Error",JOptionPane.CLOSED_OPTION);
             }
             else {
-                model_SpCH.addElement(new SanPhamCuaHang(textField_maSp.getText(),textField_tenSp.getText(),textField_phanLoai.getText(),textField_thongtinChiTiet.getText(),Integer.valueOf(textField_soLuong.getText()),Integer.valueOf(textField_giaTien.getText()),null));
-                removeTextField();
-                actionClick.acctionShowSP();
+            	String path_image = "";
+				if(textField_anh.getText().equals("")) {
+					path_image = FileSystem.PATH_IMAGE_DEFAULT;
+				}else {
+					path_image = textField_anh.getText();
+				}
+				try {
+					BufferedImage image = ImageIO.read(new File(path_image));
+					ImageIcon icon = new ImageIcon(image.getScaledInstance(50, 50, BufferedImage.SCALE_SMOOTH),path_image);
+					model_SpCH.addElement(new SanPhamCuaHang(textField_maSp.getText(),textField_tenSp.getText(),textField_phanLoai.getText(),textField_thongtinChiTiet.getText(),Integer.valueOf(textField_soLuong.getText()),Integer.valueOf(textField_giaTien.getText()),icon));
+	                removeTextField();
+	                actionClick.acctionShowSP();
+				}catch (IOException e) {
+					BufferedImage image;
+					try {
+						image = ImageIO.read(new File(FileSystem.PATH_IMAGE_DEFAULT));
+						ImageIcon icon = new ImageIcon(image.getScaledInstance(50, 50, BufferedImage.SCALE_SMOOTH),path_image);
+						model_SpCH.addElement(new SanPhamCuaHang(textField_maSp.getText(),textField_tenSp.getText(),textField_phanLoai.getText(),textField_thongtinChiTiet.getText(),Integer.valueOf(textField_soLuong.getText()),Integer.valueOf(textField_giaTien.getText()),icon));
+		                removeTextField();
+		                actionClick.acctionShowSP();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+                
             }
         }
         if (name.equals("button_return")){
             removeTextField();
             actionClick.acctionShowSP();
+        }
+        if(name.equals("BT_ANH")) {
+        	JFileChooser file = new JFileChooser();
+			int opt = file.showOpenDialog(this);
+			File file0 = file.getSelectedFile();
+			if(opt == JFileChooser.APPROVE_OPTION) {
+				textField_anh.setText(file0.getAbsolutePath());
+			}
         }
     }
     
@@ -126,4 +171,9 @@ public class PanelAddSp extends BasePanel{
         textField_soLuong.setText("");
         textField_giaTien.setText("");
     }
+
+	public void setModel_SpCH(DefaultListModel<SanPhamCuaHang> model_SpCH) {
+		this.model_SpCH = model_SpCH;
+	}
+    
 }

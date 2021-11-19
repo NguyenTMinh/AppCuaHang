@@ -1,10 +1,12 @@
 package com.team.ui.panel;
 
 import com.team.logic.CuaHang;
+import com.team.logic.SanPhamCuaHang;
 import com.team.ui.ActionClick;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class PanelPhienCH extends BasePanel{
     private JLabel jLabel_UserName;
@@ -104,5 +106,9 @@ public class PanelPhienCH extends BasePanel{
 
     public void setActionClick_ListSP(ActionClick actionClick_ListSP) {
         this.actionClick_ListSP = actionClick_ListSP;
+    }
+    
+    public void setListToCH(List<SanPhamCuaHang> list) {
+    	cuaHang.setSanPhamCuaHangs(list);
     }
 }

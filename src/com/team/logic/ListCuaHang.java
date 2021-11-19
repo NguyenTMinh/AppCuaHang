@@ -56,4 +56,7 @@ public class ListCuaHang {
 		this.cuaHangs.add(cuaHang);
 	}
 	
+	public void updateCuaHang(CuaHang cuaHang,int index) {
+		cuaHangs.set(index, cuaHang);
+	}
 }

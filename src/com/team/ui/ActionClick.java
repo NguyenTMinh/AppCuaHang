@@ -30,6 +30,7 @@ public interface ActionClick {
 	void setUserNameKH(String name);
 	void saveDataCH(CuaHang cuaHang);
 	void passListSPCHToPanelList(List<SanPhamCuaHang> list);
+	void passListSPCHToPanelPhienCH(List<SanPhamCuaHang> list);
 	List<CuaHang> getListCH();
 	List<KhachHang> getListKH();
 	DefaultListModel<SanPhamCuaHang> getModel_SpCH();

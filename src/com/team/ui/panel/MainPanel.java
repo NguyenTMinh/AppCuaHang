@@ -93,7 +93,8 @@ public class MainPanel extends BasePanel implements ActionClick{
 
 	@Override
 	public void acctionShowSP() {
-		panelListSP.setModelList(panelAddSp.getModel_SpCH());
+		panelListSP.setModel_sp(panelAddSp.getModel_SpCH());
+		panelListSP.addList(panelAddSp.getModel_SpCH().getElementAt(panelAddSp.getModel_SpCH().getSize()-1));
 		panelListSP.setVisible(true);
 		panelPhienCH.setVisible(false);
 		panelAddSp.setVisible(false);
@@ -101,6 +102,7 @@ public class MainPanel extends BasePanel implements ActionClick{
 
 	@Override
 	public void addSp() {
+		panelAddSp.setModel_SpCH(panelListSP.getModel_sp());
 		panelListSP.setVisible(false);
 		panelAddSp.setVisible(true);
 	}
@@ -228,14 +230,13 @@ public class MainPanel extends BasePanel implements ActionClick{
 	public void saveDataCH(CuaHang cuaHang) {
 		for (int i = 0; i < listCuaHang.getCuaHangs().size(); i++) {
 			if(cuaHang.getTaiKhoan().equals(listCuaHang.getCuaHangs().get(i).getTaiKhoan())) {
-				listCuaHang.getCuaHangs().set(i, cuaHang);
+				listCuaHang.updateCuaHang(cuaHang,i);
 				break;
 			}
 		}
 		try {
 			listCuaHang.writeDataToFile();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -247,9 +248,14 @@ public class MainPanel extends BasePanel implements ActionClick{
 		if(list.size()>0) {
 			model.addAll(list);
 		}
-		panelListSP.setModelList(model);
+		panelListSP.setModel_sp(model);
 		panelListSP.setVisible(true);
 		panelPhienCH.setVisible(false);
+	}
+
+	@Override
+	public void passListSPCHToPanelPhienCH(List<SanPhamCuaHang> list) {
+		panelPhienCH.setListToCH(list);	
 	}
 
 }
