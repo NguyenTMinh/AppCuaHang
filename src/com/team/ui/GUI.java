@@ -14,6 +14,7 @@ import com.team.ui.panel.MainPanel;
 
 public class GUI extends JFrame{
 	
+	public static final Color colerTheme = new Color(151, 215, 211);
 	public static final int H_SIZE = 650;
 	public static final int W_SIZE = 800;
 	public static final Color colorTheme = new Color(151,215,211);

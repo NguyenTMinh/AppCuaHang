@@ -59,10 +59,13 @@ public class SanPhamKhachHang{
 		}
 		return trangThai+"&"+this.getNgay()+"&"+this.getThoiGian()+"&"+this.getMaSP();
 	}
+<<<<<<< HEAD
 
     @Override
     public String toString() {
         return "SanPhamKhachHang{" + "maSP=" + maSP + ", ngay=" + ngay + ", thoiGian=" + thoiGian + ", thanhToan=" + thanhToan + '}';
     }
         
+=======
+>>>>>>> login/store
 }

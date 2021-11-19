@@ -68,4 +68,23 @@ public class CuaHang extends CommonUser{
 		return this.getTaiKhoan()+"&"+this.getMatKhau()+"&"+this.getTenShop()+"&"+this.getDiaCHiShop()
 				+"&"+this.getSdtShop()+"&"+this.getEmailShop()+"&";
 	}
+<<<<<<< HEAD
+=======
+	
+	public boolean isSanPhamExisted(String maSP) {
+		for (int i = 0; i < sanPhamCuaHangs.size(); i++) {
+			if(sanPhamCuaHangs.get(i).getMaSP().equals(maSP)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean isAccountOrPhoneExisted(String acc, String phone) {
+		if(this.getTaiKhoan().equals(acc) || this.getSdtShop().equals(phone)) {
+			return true;
+		}
+		return false;
+	}
+>>>>>>> login/store
 }

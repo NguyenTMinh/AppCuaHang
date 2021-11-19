@@ -13,7 +13,12 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class FileSystem {
+<<<<<<< HEAD
 	public static String PATH_IMAGE_DEFAULT = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\ic_photo_size_select_actual.png";
+=======
+	public static final String PATH_IMAGE_DEFAULT = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\ic_photo_size_select_actual.png";
+	public static final String PATH_ICON_RETURN = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\ic_arrow_back_ios1.png";
+>>>>>>> login/store
 
 	public static void getSanPhamKHFromFile(String path,KhachHang khachHang) throws IOException{
 		List<SanPhamKhachHang> gioHang = new ArrayList<>();
@@ -45,6 +50,10 @@ public class FileSystem {
 	public static String writeSanPhamKHToFile(KhachHang owner) throws IOException{
 		String path = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\"+owner.getSdt()+".txt";
 		File file = new File(path);
+<<<<<<< HEAD
+=======
+		file.delete();
+>>>>>>> login/store
 		file.createNewFile();
 		RandomAccessFile raf = new RandomAccessFile(file, "rw");
 		for(int i = 0; i < owner.getLishSuMuaHang().size(); i++) {
@@ -79,10 +88,18 @@ public class FileSystem {
 	public static String writeSanPhamCHToFile(CuaHang owner) throws IOException{
 		String path = System.getProperty("user.dir")+"\\src\\com\\team\\assets\\"+owner.getSdtShop()+".txt";
 		File file = new File(path);
+<<<<<<< HEAD
 		file.createNewFile();
 		RandomAccessFile raf = new RandomAccessFile(file, "rw");
 		for (int i = 0; i < owner.getSanPhamCuaHangs().size(); i++) {
 			raf.writeBytes(owner.getSanPhamCuaHangs().get(i).getInfos());
+=======
+		file.delete();
+		file.createNewFile();
+		RandomAccessFile raf = new RandomAccessFile(file, "rw");
+		for (int i = 0; i < owner.getSanPhamCuaHangs().size(); i++) {
+			raf.writeBytes(owner.getSanPhamCuaHangs().get(i).getInfos() + "\n");
+>>>>>>> login/store
 		}
 		raf.close();
 		return path;
