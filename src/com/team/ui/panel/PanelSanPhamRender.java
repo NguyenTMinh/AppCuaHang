@@ -1,14 +1,6 @@
-<<<<<<< HEAD
-
 package com.team.ui.panel;
 
 import com.team.logic.SanPhamCuaHang;
-import com.team.ui.GUI;
-=======
-package com.team.ui.panel;
-
-import com.team.logic.SanPhamCuaHang;
->>>>>>> login/store
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -36,11 +28,7 @@ public class PanelSanPhamRender extends JPanel implements ListCellRenderer<SanPh
 
         JPanel panel_InfoSP = new JPanel(new FlowLayout());
         panel_InfoSP.setSize(300,300);
-<<<<<<< HEAD
-        panel_InfoSP.setBackground(GUI.colorTheme);
-=======
         panel_InfoSP.setBackground(Color.decode("#a6f7f6"));
->>>>>>> login/store
         panel_InfoSP.add(label_Masp);
         panel_InfoSP.add(label_Tensp);
         panel_InfoSP.add(label_Giasp);
@@ -53,19 +41,6 @@ public class PanelSanPhamRender extends JPanel implements ListCellRenderer<SanPh
 
     @Override
     public Component getListCellRendererComponent(JList<? extends SanPhamCuaHang> list, SanPhamCuaHang value, int index, boolean isSelected, boolean cellHasFocus) {
-<<<<<<< HEAD
-        label_Masp.setText("Mã sản phẩm: "+ value.getMaSP());
-        label_Masp.setFont( new Font("Tahoma",Font.PLAIN,15));
-        label_Masp.setForeground(Color.BLACK);
-
-        label_Tensp.setText("Tên sản phẩm: "+ value.getTenSP());
-        label_Tensp.setFont( new Font("Tahoma",Font.PLAIN,15));
-        label_Tensp.setForeground(Color.BLACK);
-
-        label_Giasp.setText("Giá sản phẩm: "+ String.valueOf(value.getGiaTien()));
-        label_Giasp.setFont( new Font("Tahoma",Font.PLAIN,15));
-        label_Giasp.setForeground(Color.BLACK);
-=======
         label_Masp.setText("Mã sản phẩm:"+ value.getMaSP());
         label_Masp.setFont( new Font("Tahoma",Font.PLAIN,15));
         label_Masp.setForeground(Color.decode("#61149c"));
@@ -77,22 +52,14 @@ public class PanelSanPhamRender extends JPanel implements ListCellRenderer<SanPh
         label_Giasp.setText("Giá sản phẩm:"+ String.valueOf(value.getGiaTien()));
         label_Giasp.setFont( new Font("Tahoma",Font.PLAIN,15));
         label_Giasp.setForeground(Color.decode("#61149c"));
->>>>>>> login/store
 
         label_Image.setIcon(value.getAnhMH());
 
         if (isSelected){
             setBackground(list.getSelectionBackground());
-<<<<<<< HEAD
-            System.out.println("a");
-        }
-        else {
-            setBackground(GUI.colorTheme);
-=======
         }
         else {
             setBackground(Color.decode("#97D7D3"));
->>>>>>> login/store
         }
         return this;
     }

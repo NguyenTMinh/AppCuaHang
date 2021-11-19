@@ -11,19 +11,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-<<<<<<< HEAD
-=======
 import com.team.logic.FileSystem;
->>>>>>> login/store
 import com.team.ui.ActionClick;
 import com.team.ui.GUI;
 
 public class PanelDangKy extends BasePanel{
-<<<<<<< HEAD
-	private static final String TITLE = "Bạn muốn đăng ký tài khoản dành cho";
-=======
 	private static final String TITLE = "Bạn muốn đăng ký tài khoản cho";
->>>>>>> login/store
 	private static final String DKCH = "Quản lý cửa hàng";
 	private static final String BT_DKCH = "BT_DKCH";
 	private static final String DKKH = "Khách hàng";
@@ -35,11 +28,7 @@ public class PanelDangKy extends BasePanel{
 	@Override
 	public void initUI() {
 		setLayout(null);
-<<<<<<< HEAD
-		setBackground(GUI.colorTheme);
-=======
 		setBackground(Color.WHITE);
->>>>>>> login/store
 		setVisible(true);
 	}
 
@@ -53,17 +42,10 @@ public class PanelDangKy extends BasePanel{
 	public void addComp() {
 		Font font1 = new Font("Tahoma", Font.BOLD, 20);
 		Font font2 = new Font("Tahoma", Font.BOLD, 15);
-<<<<<<< HEAD
-		Icon icon = new ImageIcon("D:\\Downloads\\ic_arrow_back_ios1.png","comeback");
-		lb_QuayLai = new JLabel("<html><u>Quay lại</u></html>", icon, JLabel.CENTER);
-		lb_QuayLai.setLocation(20, 20);
-		lb_QuayLai.setBackground(GUI.colorTheme);
-=======
 		Icon icon = new ImageIcon(FileSystem.PATH_ICON_RETURN,"comeback");
 		lb_QuayLai = new JLabel("<html><u>Quay lại</u></html>", icon, JLabel.CENTER);
 		lb_QuayLai.setLocation(20, 20);
 		lb_QuayLai.setBackground(Color.WHITE);
->>>>>>> login/store
 		lb_QuayLai.setSize(100,40);
 		lb_QuayLai.setFont(font2);
 		lb_QuayLai.setOpaque(true);
@@ -84,11 +66,7 @@ public class PanelDangKy extends BasePanel{
 			}
 		});
 		add(lb_QuayLai);
-<<<<<<< HEAD
-		lb_text = createLabel(TITLE, 0, lb_QuayLai.getY()+lb_QuayLai.getHeight()+50, font1, Color.BLACK, GUI.colorTheme);
-=======
 		lb_text = createLabel(TITLE, 0, lb_QuayLai.getY()+lb_QuayLai.getHeight()+50, font1, Color.BLACK, Color.WHITE);
->>>>>>> login/store
 		int x = GUI.W_SIZE/2 - lb_text.getWidth()/2;
 		lb_text.setLocation(x, lb_text.getY());
 		add(lb_text);

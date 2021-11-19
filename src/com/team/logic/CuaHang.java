@@ -68,8 +68,6 @@ public class CuaHang extends CommonUser{
 		return this.getTaiKhoan()+"&"+this.getMatKhau()+"&"+this.getTenShop()+"&"+this.getDiaCHiShop()
 				+"&"+this.getSdtShop()+"&"+this.getEmailShop()+"&";
 	}
-<<<<<<< HEAD
-=======
 	
 	public boolean isSanPhamExisted(String maSP) {
 		for (int i = 0; i < sanPhamCuaHangs.size(); i++) {
@@ -86,5 +84,4 @@ public class CuaHang extends CommonUser{
 		}
 		return false;
 	}
->>>>>>> login/store
 }

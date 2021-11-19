@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -33,17 +34,20 @@ import javax.swing.JTextField;
  *
  * @author phuon
  */
-public class PanelDSSPKhachHang extends BasePanel{
-    
+public class PanelDSSPKhachHang extends BasePanel {
+
     private JLabel lb_QuayLai, lb_tatCa, lb_tong;
     private JTextField tf_timKiem, tf_tongTien;
     private JButton btn_timKiem, btn_filter, btn_themVaoGioHang;
+    
     private ActionClick ack;
+    private ActionClick ac;
+    
     static final String BT_timKiem = "Tìm kiếm";
     static final String BT_showAll = "Tất cả";
     static final String BT_themVaoGioHang = "Thêm vào giỏ hàng";
-    
-    private JList<SanPhamCuaHang> listSanPhamKhachHang;
+
+    private JList<SanPhamCuaHang> listSanPhamCuaHang;
     private DefaultListModel<SanPhamCuaHang> model_sp;
     private ImageIcon imageIcon_Quandai;
     public BufferedImage image_quanDai;
@@ -61,7 +65,7 @@ public class PanelDSSPKhachHang extends BasePanel{
     @Override
     public void initUI() {
         setLayout(null);
-        setBackground(GUI.colorTheme);
+        setBackground(GUI.colerTheme);
         setVisible(true);
 
     }
@@ -79,7 +83,7 @@ public class PanelDSSPKhachHang extends BasePanel{
         Icon icon = new ImageIcon("D:\\Downloads\\ic_arrow_back_ios1.png", "comeback");
         lb_QuayLai = new JLabel("<html><u>Quay lại</u></html>", icon, JLabel.CENTER);
         lb_QuayLai.setLocation(20, 20);
-        lb_QuayLai.setBackground(GUI.colorTheme);
+        lb_QuayLai.setBackground(GUI.colerTheme);
         lb_QuayLai.setSize(100, 40);
         lb_QuayLai.setFont(font2);
         lb_QuayLai.setOpaque(true);
@@ -123,25 +127,21 @@ public class PanelDSSPKhachHang extends BasePanel{
         // jlist
         JPanel jPanel_main = new JPanel();
         jPanel_main.setBounds(0, 130, 795, 370);
-        jPanel_main.setBackground(GUI.colorTheme);
+        jPanel_main.setBackground(GUI.colerTheme);
         jPanel_main.setLayout(new BorderLayout());
 
         model_sp = new DefaultListModel<>(); // Tạo model để add vào JList -- mỗi model là thể hiện cho 1 sản phẩm của cửa hàng
-        model_sp.addElement(new SanPhamCuaHang("1", "Áo thun", "Áo", "Áo cao cấp", 20, 150, imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("2", "Áo dài tay", "Áo", "Áo cao cấp", 20, 200, imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("3", "Áo phông ", "Áo", "Áo cao cấp", 20, 150, imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("4", "Áo sơ mi", "Áo", "Áo cao cấp", 20, 350, imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("5", "Quần đùi", "Quần", "Quần cao cấp", 20, 200, imageIcon_Quandai));
-        model_sp.addElement(new SanPhamCuaHang("6", "Quần dài", "Quần", "Quần cao cấp", 20, 250, imageIcon_Quandai));
+ 
 
-        listSanPhamKhachHang = new JList<>(model_sp);
-        listSanPhamKhachHang.setCellRenderer(new PanelSanPhamRender());
-        jPanel_main.add(new JScrollPane(listSanPhamKhachHang), BorderLayout.CENTER); // add Jlist vào trong 1 ScrollPane , sau đó add ScrollPane vào cái PanelMain
+  
+        listSanPhamCuaHang = new JList<>(model_sp);
+        listSanPhamCuaHang.setCellRenderer(new PanelSanPhamRender());
+        jPanel_main.add(new JScrollPane(listSanPhamCuaHang), BorderLayout.CENTER); // add Jlist vào trong 1 ScrollPane , sau đó add ScrollPane vào cái PanelMain
 
         add(jPanel_main);
 
         //btn thanh toán
-        btn_themVaoGioHang= createButton("Thêm vào giỏ hàng", 400, 550, font2, Color.BLACK, BT_themVaoGioHang);
+        btn_themVaoGioHang = createButton("Thêm vào giỏ hàng", 400, 550, font2, Color.BLACK, BT_themVaoGioHang);
         add(btn_themVaoGioHang);
 
     }
@@ -150,12 +150,12 @@ public class PanelDSSPKhachHang extends BasePanel{
     protected void handleClick(String name) {
         if (name.equals(BT_timKiem)) {
             int check = 0;
-            DefaultListModel<SanPhamCuaHang> model_FullSpCuaHang = (DefaultListModel<SanPhamCuaHang>) listSanPhamKhachHang.getModel();
+            DefaultListModel<SanPhamCuaHang> model_FullSpCuaHang = (DefaultListModel<SanPhamCuaHang>) listSanPhamCuaHang.getModel();
             for (int i = 0; i < model_FullSpCuaHang.size(); i++) {
                 if (model_FullSpCuaHang.get(i).getMaSP().equals(tf_timKiem.getText())) {
                     DefaultListModel<SanPhamCuaHang> model_SpCanTim = new DefaultListModel<>();
                     model_SpCanTim.addElement(new SanPhamCuaHang(model_FullSpCuaHang.get(i).getMaSP(), model_FullSpCuaHang.get(i).getTenSP(), model_FullSpCuaHang.get(i).getPhanLoai(), model_FullSpCuaHang.get(i).getThongTinChiTiet(), model_FullSpCuaHang.get(i).getSoLuong(), model_FullSpCuaHang.get(i).getGiaTien(), model_FullSpCuaHang.get(i).getAnhMH()));
-                    listSanPhamKhachHang.setModel(model_SpCanTim);
+                    listSanPhamCuaHang.setModel(model_SpCanTim);
                     check += 1;
                     break;
                 }
@@ -165,18 +165,21 @@ public class PanelDSSPKhachHang extends BasePanel{
             }
         }
         if (name.equals(BT_showAll)) {
-
             ack.showAllDanhSachSanPham();
-            
         }
-        if(name.equals(BT_themVaoGioHang)){
-            
+        if (name.equals(BT_themVaoGioHang)) {
+            themSanPham();
         }
-
     }
 
-  
-
+    private void themSanPham() {
+        DefaultListModel<SanPhamCuaHang> model = (DefaultListModel<SanPhamCuaHang>) listSanPhamCuaHang.getModel();
+        DefaultListModel<SanPhamCuaHang> model_sanPhamLuaChon = new DefaultListModel<>();
+        if (!model.isEmpty() && listSanPhamCuaHang.getSelectedIndex() >= 0) {
+            model_sanPhamLuaChon.addElement(model.getElementAt(listSanPhamCuaHang.getSelectedIndex()));
+        }
+        System.out.println(model_sanPhamLuaChon);
+    }
 
     public DefaultListModel<SanPhamCuaHang> getModel_sp() {
         return model_sp;
@@ -187,15 +190,29 @@ public class PanelDSSPKhachHang extends BasePanel{
     }
 
     public JList<SanPhamCuaHang> getListSanPhamKhachHang() {
-        return listSanPhamKhachHang;
+        return listSanPhamCuaHang;
     }
 
-    public void setListSanPhamKhachHang(JList<SanPhamCuaHang> listSanPhamKhachHang) {
-        this.listSanPhamKhachHang = listSanPhamKhachHang;
+    public void setListSanPhamKhachHang(JList<SanPhamCuaHang> listSanPhamCuaHang) {
+        this.listSanPhamCuaHang = listSanPhamCuaHang;
     }
+
     public void setModelList(DefaultListModel<SanPhamCuaHang> model) {
-        listSanPhamKhachHang.setModel(model);
+        listSanPhamCuaHang.setModel(model);
     }
+    
+    public void setModel(DefaultListModel<SanPhamCuaHang> model) {
+       this.model_sp = model;
+    }
+
+    public ActionClick getAc() {
+        return ac;
+    }
+
+    public void setAc(ActionClick ac) {
+        this.ac = ac;
+    }
+    
     
     
 }

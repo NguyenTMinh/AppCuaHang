@@ -55,11 +55,9 @@ public class ListCuaHang {
 	public void addCuaHang(CuaHang cuaHang) {
 		this.cuaHangs.add(cuaHang);
 	}
-<<<<<<< HEAD
-=======
 	
 	public void updateCuaHang(CuaHang cuaHang,int index) {
 		cuaHangs.set(index, cuaHang);
 	}
->>>>>>> login/store
+        
 }

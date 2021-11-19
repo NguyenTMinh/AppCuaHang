@@ -77,12 +77,16 @@ public class PanelPhienCH extends BasePanel{
 
     @Override
     protected void handleClick(String name) {
-        if (name.equals("button_ListSP")){
-        	actionClick_ListSP.passListSPCHToPanelList(cuaHang.getSanPhamCuaHangs());
-        }
-        else if (name.equals("button_logout")){
+//        if (name.equals("button_ListSP")){
+//        	//actionClick_ListSP.passListSPCHToPanelList(cuaHang.getSanPhamCuaHangs());
+//        }
+        if (name.equals("button_logout")){
         	actionClick_ListSP.saveDataCH(cuaHang);
             actionClick_ListSP.comeBack();
+        }
+        if(name.equals("button_ListSP")){
+            System.out.println(actionClick_ListSP.getListCH().size());
+            actionClick_ListSP.fromDanhSachSanPham();
         }
     }
     

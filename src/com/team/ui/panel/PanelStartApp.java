@@ -18,31 +18,20 @@ public class PanelStartApp extends BasePanel{
 	private static final String CH = "Quản lý cửa hàng";
 	private static final String BT_CUAHANG = "BT_CUAHANG";
 	private static final String BT_KHACHHANG = "BT_KHACHHANG";
-<<<<<<< HEAD
-	private static final String KH = "Khách Hàng";
-=======
 	private static final String KH = "Khách hàng";
->>>>>>> login/store
 	private static final String TEXT_DANG_KY = "Bạn chưa có tài khoản";
 	private static final String DANG_KY = "Đăng ký";
 	private static final String BT_DANGKY = "BT_DANGKY";
 	private JLabel lb_AppName, lb_BanLa, lb_DangKy;
 	private JButton bt_CuaHang, bt_KhachHang, bt_DangKy;
-<<<<<<< HEAD
-=======
 	private ActionClick ack;
 	private int roleAccount;
->>>>>>> login/store
 	
 	@Override
 	public void initUI() {
 		setLayout(null);
 		setVisible(true);
-<<<<<<< HEAD
-		setBackground(GUI.colorTheme);
-=======
 		setBackground(Color.WHITE);
->>>>>>> login/store
 	}
 
 	@Override
@@ -84,17 +73,11 @@ public class PanelStartApp extends BasePanel{
 	@Override
 	protected void handleClick(String name) {
 		if(name.equals(BT_CUAHANG)) {
-<<<<<<< HEAD
-			ack.toDangNhap();
-		}
-		if(name.equals(BT_KHACHHANG)) {
-=======
 			setRoleAccount(0);
 			ack.toDangNhap();
 		}
 		if(name.equals(BT_KHACHHANG)) {
 			setRoleAccount(1);
->>>>>>> login/store
 			ack.toDangNhap();
 		}
 		if(name.equals(BT_DANGKY)) {
@@ -102,9 +85,6 @@ public class PanelStartApp extends BasePanel{
 		}
 	}
 	
-<<<<<<< HEAD
-	private ActionClick ack;
-=======
 	
 	public int getRoleAccount() {
 		return roleAccount;
@@ -113,7 +93,6 @@ public class PanelStartApp extends BasePanel{
 	private void setRoleAccount(int roleAccount) {
 		this.roleAccount = roleAccount;
 	}
->>>>>>> login/store
 
 	public ActionClick getAck() {
 		return ack;

@@ -38,7 +38,7 @@ import javax.swing.JTextField;
  *
  * @author phuon
  */
-public class PanelGioHang extends BasePanel {
+public class PanelGioHang_1 extends BasePanel {
 
     private JLabel lb_QuayLai, lb_tatCa, lb_tong;
     private JTextField tf_timKiem, tf_tongTien;

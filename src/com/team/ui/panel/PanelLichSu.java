@@ -62,7 +62,7 @@ public class PanelLichSu extends BasePanel {
     @Override
     public void initUI() {
         setLayout(null);
-        setBackground(GUI.colorTheme);
+        setBackground(GUI.colerTheme);
         setVisible(true);
     }
 
@@ -79,7 +79,7 @@ public class PanelLichSu extends BasePanel {
         Icon icon = new ImageIcon("D:\\Downloads\\ic_arrow_back_ios1.png", "comeback");
         lb_QuayLai = new JLabel("<html><u>Quay lại</u></html>", icon, JLabel.CENTER);
         lb_QuayLai.setLocation(20, 20);
-        lb_QuayLai.setBackground(GUI.colorTheme);
+        lb_QuayLai.setBackground(GUI.colerTheme);
         lb_QuayLai.setSize(100, 40);
         lb_QuayLai.setFont(font2);
         lb_QuayLai.setOpaque(true);
@@ -123,7 +123,7 @@ public class PanelLichSu extends BasePanel {
         // jlist
         JPanel jPanel_main = new JPanel();
         jPanel_main.setBounds(0, 130, 795, 370);
-        jPanel_main.setBackground(GUI.colorTheme);
+        jPanel_main.setBackground(GUI.colerTheme);
         jPanel_main.setLayout(new BorderLayout());
 
         model_sp = new DefaultListModel<>(); // Tạo model để add vào JList -- mỗi model là thể hiện cho 1 sản phẩm của cửa hàng
