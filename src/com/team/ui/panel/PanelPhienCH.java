@@ -30,7 +30,7 @@ public class PanelPhienCH extends BasePanel{
 
     @Override
     public void addEvent() {
-
+    	
     }
 
     @Override

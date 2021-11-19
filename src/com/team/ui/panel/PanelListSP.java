@@ -33,6 +33,7 @@ public class PanelListSP extends BasePanel {
 
     private JPanel panel_editSp;
     private JPanel jPanel_main;
+    private JPanel panel_List_spCantim;
 
     private JTextField textField_findSp;
 
@@ -55,6 +56,10 @@ public class PanelListSP extends BasePanel {
     JButton button_return;
 	private JLabel lb_QuayLai;
 	private List<SanPhamCuaHang> listSPCH;
+	
+	private boolean onPanel_SpCantim = false;
+	private DefaultListModel model_SpCanTim;
+	private JList listsanphamCH_SpCanTim;
 
     @Override
     public void initUI() {
@@ -230,7 +235,25 @@ public class PanelListSP extends BasePanel {
         }
         
         if(name.equals("button_editsp")){
-            editSp();
+        	if (onPanel_SpCantim == false){
+                if (listsanphamCH.getSelectedIndex()<0){
+                    JOptionPane.showConfirmDialog(this,"Sản phẩm chưa được chọn","Error",JOptionPane.CLOSED_OPTION);
+                }
+                else {
+                    this.editSp();
+                    return;
+                }
+            }
+            else {
+                if (listsanphamCH_SpCanTim.getSelectedIndex()<0){
+                    JOptionPane.showConfirmDialog(this,"Sản phẩm chưa được chọn","Error",JOptionPane.CLOSED_OPTION);
+                }
+                else {
+                    panel_editSp.setVisible(true);
+                    panel_List_spCantim.setVisible(false);
+                    remove_PanelListSp();
+                }
+            }
         }
 
         if (name.equals("button_returnList")){
@@ -239,61 +262,151 @@ public class PanelListSP extends BasePanel {
         }
 
         if (name.equals("button_ConfirmEditSp")){
-            DefaultListModel<SanPhamCuaHang> model = (DefaultListModel<SanPhamCuaHang>) listsanphamCH.getModel();
-            if (!model.isEmpty() && listsanphamCH.getSelectedIndex()>=0){
-                if (!textField_maSp.getText().equals("")){
-                    model.get(listsanphamCH.getSelectedIndex()).setMaSP(textField_maSp.getText());
+        	DefaultListModel<SanPhamCuaHang> model = (DefaultListModel<SanPhamCuaHang>) listsanphamCH.getModel();
+            if (onPanel_SpCantim == false){
+                // đây là sửa trên list tổng
+                if (!model.isEmpty() && listsanphamCH.getSelectedIndex()>=0){
+                    if (!textField_maSp.getText().equals("")){
+                        model.get(listsanphamCH.getSelectedIndex()).setMaSP(textField_maSp.getText());
+                    }
+                    if (!textField_tenSp.getText().equals("")){
+                        model.get(listsanphamCH.getSelectedIndex()).setTenSP(textField_tenSp.getText());
+                    }
+                    if (!textField_phanLoai.getText().equals("")){
+                        model.get(listsanphamCH.getSelectedIndex()).setPhanLoai(textField_phanLoai.getText());
+                    }
+                    if (!textField_thongtinChiTiet.getText().equals("")){
+                        model.get(listsanphamCH.getSelectedIndex()).setThongTinChiTiet(textField_thongtinChiTiet.getText());
+                    }
+                    if (!textField_soLuong.getText().equals("")){
+                        model.get(listsanphamCH.getSelectedIndex()).setSoLuong(Integer.valueOf(textField_soLuong.getText()));
+                    }
+                    if (!textField_giaTien.getText().equals("")){
+                        model.get(listsanphamCH.getSelectedIndex()).setGiaTien(Long.valueOf(textField_giaTien.getText()));
+                    }
+                    listSPCH.set(listsanphamCH.getSelectedIndex(), model.get(listsanphamCH.getSelectedIndex()));
+                    actionClick.passListSPCHToPanelPhienCH(listSPCH);
                 }
-                if (!textField_tenSp.getText().equals("")){
-                    model.get(listsanphamCH.getSelectedIndex()).setTenSP(textField_tenSp.getText());
-                }
-                if (!textField_phanLoai.getText().equals("")){
-                    model.get(listsanphamCH.getSelectedIndex()).setPhanLoai(textField_phanLoai.getText());
-                }
-                if (!textField_thongtinChiTiet.getText().equals("")){
-                    model.get(listsanphamCH.getSelectedIndex()).setThongTinChiTiet(textField_thongtinChiTiet.getText());
-                }
-                if (!textField_soLuong.getText().equals("")){
-                    model.get(listsanphamCH.getSelectedIndex()).setSoLuong(Integer.valueOf(textField_soLuong.getText()));
-                }
-                if (!textField_giaTien.getText().equals("")){
-                    model.get(listsanphamCH.getSelectedIndex()).setGiaTien(Long.valueOf(textField_giaTien.getText()));
-                }
+                listsanphamCH.setModel(model);
             }
-            listsanphamCH.setModel(model);
+            else {
+                DefaultListModel<SanPhamCuaHang> model_moiCanSua = (DefaultListModel<SanPhamCuaHang>) listsanphamCH_SpCanTim.getModel();
+                if (!model_moiCanSua.isEmpty()&& listsanphamCH_SpCanTim.getSelectedIndex()>=0){
+                    for (int i = 0; i < model.size(); i++) {
+                        if (model.get(i).getMaSP() == model_moiCanSua.get(listsanphamCH_SpCanTim.getSelectedIndex()).getMaSP()){
+                            if (!textField_maSp.getText().equals("")){
+                                model.get(i).setMaSP(textField_maSp.getText());
+                            }
+                            if (!textField_tenSp.getText().equals("")){
+                                model.get(i).setTenSP(textField_tenSp.getText());
+                            }
+                            if (!textField_phanLoai.getText().equals("")){
+                                model.get(i).setPhanLoai(textField_phanLoai.getText());
+                            }
+                            if (!textField_thongtinChiTiet.getText().equals("")){
+                                model.get(i).setThongTinChiTiet(textField_thongtinChiTiet.getText());
+                            }
+                            if (!textField_soLuong.getText().equals("")){
+                                model.get(i).setSoLuong(Integer.valueOf(textField_soLuong.getText()));
+                            }
+                            if (!textField_giaTien.getText().equals("")){
+                                model.get(i).setGiaTien(Long.valueOf(textField_giaTien.getText()));
+                            }
+                            
+                            for (int j = 0; j < listSPCH.size(); j++) {
+    							if(listSPCH.get(j).getMaSP() == model.get(i).getMaSP()) {
+    								listSPCH.set(j,model.get(i));
+    								break;
+    							}
+    						}
+                        }
+                    }
+                }
+                actionClick.passListSPCHToPanelPhienCH(listSPCH);
+            }
             panel_editSp.setVisible(false);
             removeTextField();
             show_PanelList();
         }
 
         if (name.equals("button_findsp")){
-            int check = 0;
+        	int check = 0;
             DefaultListModel<SanPhamCuaHang> model_FullSpCuaHang = (DefaultListModel<SanPhamCuaHang>) listsanphamCH.getModel();
-            for (int i = 0; i < model_FullSpCuaHang.size(); i++) {
-                if (model_FullSpCuaHang.get(i).getMaSP().equals(textField_findSp.getText())){
-                    DefaultListModel<SanPhamCuaHang> model_SpCanTim = new DefaultListModel<>();
-                    model_SpCanTim.addElement(new SanPhamCuaHang(model_FullSpCuaHang.get(i).getMaSP(),model_FullSpCuaHang.get(i).getTenSP(),model_FullSpCuaHang.get(i).getPhanLoai(),model_FullSpCuaHang.get(i).getThongTinChiTiet(),model_FullSpCuaHang.get(i).getSoLuong(),model_FullSpCuaHang.get(i).getGiaTien(),model_FullSpCuaHang.get(i).getAnhMH()));
-                    listsanphamCH.setModel(model_SpCanTim);
-                    check +=1;
-                    break;
+            if (onPanel_SpCantim == false){
+                for (int i = 0; i < model_FullSpCuaHang.size(); i++) {
+                    if (model_FullSpCuaHang.get(i).getMaSP().equals(textField_findSp.getText())){
+                        panel_List_spCantim = new JPanel(); // Tạo PanelMain để chứa
+                        panel_List_spCantim.setBounds(0,150, 786,320);
+                        panel_List_spCantim.setBackground(Color.decode("#97D7D3"));
+                        panel_List_spCantim.setLayout(new BorderLayout());
+
+                        model_SpCanTim = new DefaultListModel<>();
+                        model_SpCanTim.addElement(new SanPhamCuaHang(model_FullSpCuaHang.get(i).getMaSP(),model_FullSpCuaHang.get(i).getTenSP(),model_FullSpCuaHang.get(i).getPhanLoai(),model_FullSpCuaHang.get(i).getThongTinChiTiet(),model_FullSpCuaHang.get(i).getSoLuong(),model_FullSpCuaHang.get(i).getGiaTien(),model_FullSpCuaHang.get(i).getAnhMH()));
+                        listsanphamCH_SpCanTim = new JList<>(model_SpCanTim);
+                        listsanphamCH_SpCanTim.setCellRenderer(new PanelSanPhamRender());
+                        panel_List_spCantim.add(new JScrollPane(listsanphamCH_SpCanTim),BorderLayout.CENTER); // add Jlist vào trong 1 ScrollPane , sau đó add ScrollPane vào cái PanelMain
+
+                        add(panel_List_spCantim);
+                        jPanel_main.setVisible(false);
+
+                        check = 1;
+                        onPanel_SpCantim = true;
+                        break;
+                    }
+                }
+                if (check == 0){
+                    JOptionPane.showConfirmDialog(null,"Không có sản phẩm","Error",JOptionPane.CLOSED_OPTION);
                 }
             }
-            if (check == 0){
-                JOptionPane.showConfirmDialog(null,"Không có sản phẩm","Error",JOptionPane.CLOSED_OPTION);
+            else {
+                for (int i = 0; i < model_FullSpCuaHang.size(); i++) {
+                    if (model_FullSpCuaHang.get(i).getMaSP().equals(textField_findSp.getText())){
+                        model_SpCanTim.removeElement(model_SpCanTim.get(i));
+                        System.out.println("ad");
+                        break;
+                    }
+                }
             }
         }
 
         if (name.equals("button_showAllSp")){
+        	remove(panel_List_spCantim);
+            jPanel_main.setVisible(true);
+            onPanel_SpCantim = false;
             listsanphamCH.setModel(model_sp);
         }
     }
+	
     private void deleteSp(){
-        if (!model_sp.isEmpty() && listsanphamCH.getSelectedIndex()>=0){
-        	listSPCH.remove(listsanphamCH.getSelectedIndex());
-        	cleanModel();
-        	passDataFromListToModel();
+    	DefaultListModel<SanPhamCuaHang> model = (DefaultListModel<SanPhamCuaHang>) listsanphamCH.getModel();
+        if (onPanel_SpCantim == false){
+            if ((!model.isEmpty() && listsanphamCH.getSelectedIndex()>=0)){
+            	listSPCH.remove(listsanphamCH.getSelectedIndex());
+                model.remove(listsanphamCH.getSelectedIndex());
+            }
         }
-        listsanphamCH.setModel(model_sp);
+        else {
+            DefaultListModel<SanPhamCuaHang> model_moi = (DefaultListModel<SanPhamCuaHang>) listsanphamCH_SpCanTim.getModel();
+            if (!model_moi.isEmpty() && listsanphamCH_SpCanTim.getSelectedIndex()>=0){
+                for (int i = 0; i < model.size(); i++) {
+                    if (model.get(i).getMaSP() == model_moi.get(listsanphamCH_SpCanTim.getSelectedIndex()).getMaSP()){
+                    	for (int j = 0; j < listSPCH.size(); j++) {
+							if(listSPCH.get(j).getMaSP() == model.get(i).getMaSP()) {
+								listSPCH.remove(j);
+								break;
+							}
+						}
+                        model.removeElement(model.get(i));
+                        break;
+                    }
+                }
+                model_moi.remove(listsanphamCH_SpCanTim.getSelectedIndex());
+                listsanphamCH_SpCanTim.setModel(model_moi);
+            }
+        }
+        listsanphamCH.setModel(model);
+        
+        actionClick.passListSPCHToPanelPhienCH(listSPCH);
     }
     
     private void cleanModel() {
@@ -305,7 +418,7 @@ public class PanelListSP extends BasePanel {
 			model_sp.addAll(listSPCH);
 		}
 	}
-
+    
     private void editSp(){
         panel_editSp.setVisible(true);
         remove_PanelListSp();
@@ -331,6 +444,7 @@ public class PanelListSP extends BasePanel {
 
     public void remove_PanelListSp(){
     	lb_QuayLai.setEnabled(false);
+    	lb_QuayLai.setVisible(false);
         jButton_findSp.setVisible(false);
         jButton_addSp.setVisible(false);
         jButton_deleteSp.setVisible(false);
@@ -341,6 +455,8 @@ public class PanelListSP extends BasePanel {
         textField_findSp.setVisible(false);
     }
     public void show_PanelList(){
+    	lb_QuayLai.setEnabled(true);
+    	lb_QuayLai.setVisible(true);
         jButton_findSp.setVisible(true);
         jButton_addSp.setVisible(true);
         jButton_deleteSp.setVisible(true);
@@ -357,6 +473,7 @@ public class PanelListSP extends BasePanel {
         textField_thongtinChiTiet.setText("");
         textField_soLuong.setText("");
         textField_giaTien.setText("");
+        
     }
     
     private void clearText() {

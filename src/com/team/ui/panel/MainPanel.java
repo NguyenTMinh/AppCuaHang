@@ -98,6 +98,7 @@ public class MainPanel extends BasePanel implements ActionClick{
 	public void acctionShowSP() {
 		panelListSP.setModel_sp(panelAddSp.getModel_SpCH());
 		panelListSP.addList(panelAddSp.getModel_SpCH().getElementAt(panelAddSp.getModel_SpCH().getSize()-1));
+		panelPhienCH.setListToCH(panelListSP.getListSPCH());
 		panelListSP.setVisible(true);
 		panelPhienCH.setVisible(false);
 		panelAddSp.setVisible(false);
@@ -260,5 +261,4 @@ public class MainPanel extends BasePanel implements ActionClick{
 	public void passListSPCHToPanelPhienCH(List<SanPhamCuaHang> list) {
 		panelPhienCH.setListToCH(list);	
 	}
-
 }
