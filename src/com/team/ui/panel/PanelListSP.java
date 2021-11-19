@@ -27,10 +27,8 @@ public class PanelListSP extends BasePanel {
     private JList<SanPhamCuaHang> listsanphamCH;
     private DefaultListModel<SanPhamCuaHang> model_sp;
 
-    private ImageIcon imageIcon_Quandai;
     public BufferedImage image_quanDai;
 
-    private ImageIcon imageIcon_aoPhong;
     public BufferedImage image_aoPhong;
 
     private JPanel panel_editSp;
@@ -123,34 +121,15 @@ public class PanelListSP extends BasePanel {
         jPanel_main.setBackground(Color.decode("#97D7D3"));
         jPanel_main.setLayout(new BorderLayout());
 
-        try {
-            image_quanDai = ImageIO.read(new File("src/com/team/ui/Picture/quandai.png"));
-            image_aoPhong = ImageIO.read(new File("src/com/team/ui/Picture/aophong.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        imageIcon_aoPhong = new ImageIcon(image_aoPhong.getScaledInstance(100,100,Image.SCALE_SMOOTH));
         listSPCH = new ArrayList<>();
         model_sp = new DefaultListModel<>();
        
-//        imageIcon_Quandai = new ImageIcon(image_quanDai.getScaledInstance(100,100,Image.SCALE_SMOOTH));
-        imageIcon_aoPhong = new ImageIcon(image_aoPhong.getScaledInstance(100,100,Image.SCALE_SMOOTH));	// Táº¡o model Ä‘á»ƒ add vÃ o JList -- má»—i model lÃ  thá»ƒ hiá»‡n cho 1 sáº£n pháº©m cá»§a cá»­a hÃ ng
-//        model_sp.addElement(new SanPhamCuaHang("1","Ã�o thun","Ã�o","Ã�o cao cáº¥p",20,150,imageIcon_aoPhong));
-//        model_sp.addElement(new SanPhamCuaHang("2","Ã�o dÃ i tay","Ã�o","Ã�o cao cáº¥p",20,200,imageIcon_aoPhong));
-//        model_sp.addElement(new SanPhamCuaHang("3","Ã�o phÃ´ng ","Ã�o","Ã�o cao cáº¥p",20,150,imageIcon_aoPhong));
-//        model_sp.addElement(new SanPhamCuaHang("4","Ã�o sÆ¡ mi","Ã�o","Ã�o cao cáº¥p",20,350,imageIcon_aoPhong));
-//        model_sp.addElement(new SanPhamCuaHang("5","Quáº§n Ä‘Ã¹i","Quáº§n","Quáº§n cao cáº¥p",20,200,imageIcon_Quandai));
-//        model_sp.addElement(new SanPhamCuaHang("6","Quáº§n dÃ i","Quáº§n","Quáº§n cao cáº¥p",20,250,imageIcon_Quandai));
-
         listsanphamCH = new JList<>(model_sp); // khá»Ÿi táº¡o JList vá»›i cÃ¡c thÃ nh pháº§n bÃªn trong lÃ  cÃ¡c model
         listsanphamCH.setCellRenderer(new PanelSanPhamRender());
         jPanel_main.add(new JScrollPane(listsanphamCH),BorderLayout.CENTER);
 
 
         add(jPanel_main); // add PanelMain vÃ o Panel chÃ­nh
-//        model_sp.addElement(new SanPhamCuaHang("1","Ã�o thun","Ã�o","Ã�o cao cáº¥p",20,150,imageIcon_aoPhong));
-//        listsanphamCH.setModel(model_sp);// add Jlist vÃ o trong 1 ScrollPane , sau Ä‘Ã³ add ScrollPane vÃ o cÃ¡i PanelMain
 
         jButton_addSp = createButton("Thêm sản phẩm",280,515,sp_font,Color.black,"button_addsp");
         jButton_addSp.setSize(230,40);
@@ -251,8 +230,7 @@ public class PanelListSP extends BasePanel {
         }
         
         if(name.equals("button_editsp")){
-            this.editSp();
-            return;
+            editSp();
         }
 
         if (name.equals("button_returnList")){
@@ -306,7 +284,7 @@ public class PanelListSP extends BasePanel {
         }
 
         if (name.equals("button_showAllSp")){
-            actionClick.acctionShowSP();
+            listsanphamCH.setModel(model_sp);
         }
     }
     private void deleteSp(){

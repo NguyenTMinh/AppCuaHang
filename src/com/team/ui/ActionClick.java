@@ -1,7 +1,12 @@
 package com.team.ui;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+import com.team.logic.CuaHang;
+import com.team.logic.KhachHang;
+>>>>>>> sub_login/store
 import com.team.logic.SanPhamCuaHang;
 
 import javax.swing.*;

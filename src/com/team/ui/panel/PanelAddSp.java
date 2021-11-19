@@ -66,14 +66,19 @@ public class PanelAddSp extends BasePanel{
         label_TitleaddSp.setBackground(null);
 
         label_maSp = createLabel("Mã sản phẩm",40,148,small_font,Color.decode("#e05ccf"),null);
+        label_maSp.setSize(150,30);
         label_tenSp = createLabel("Tên sản phẩm",40,198,small_font,Color.decode("#e05ccf"),null);
+        label_tenSp.setSize(150,30);
         label_phanLoai = createLabel("Phân loại",40,248,small_font,Color.decode("#e05ccf"),null);
-        label_thongtinChiTiet = createLabel("Chi tiết",40,298,small_font,Color.decode("#e05ccf"),null);
-        label_soLuong = createLabel("Số lượng",40,348,small_font,Color.decode("#e05ccf"),null);
-        label_giaTien = createLabel("Giá",40,398,small_font,Color.decode("#e05ccf"),null);
+        label_phanLoai.setSize(150,30);
+        label_thongtinChiTiet = createLabel("Chi tiết ",40,298,small_font,Color.decode("#e05ccf"),null);
+        label_thongtinChiTiet.setSize(150,30);
+        label_soLuong = createLabel("Số lượng ",40,348,small_font,Color.decode("#e05ccf"),null);
+        label_soLuong.setSize(150,30);
+        label_giaTien = createLabel("Giá ",40,398,small_font,Color.decode("#e05ccf"),null);
+        label_giaTien.setSize(150,30);
         label_anh = createLabel("Ảnh sản phẩm", 40, 448, small_font, Color.decode("#e05ccf"), null);
         
-
         button_Xacnhan = createButton("Xác nhận",320,500,new Font("Helvetica Neue",Font.CENTER_BASELINE,25),Color.black,"button_xacNhanAddSp");
         button_return = createButton("Trở lại",5,5,small_font,Color.black,"button_return");
         button_anh = createButton("...",550 , textField_anh.getY(), small_font, Color.black, "BT_ANH");
