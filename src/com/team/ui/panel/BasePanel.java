@@ -47,6 +47,7 @@ public abstract class BasePanel extends JPanel implements ICommon{
 		return tf;
 	}
 	
+
 	protected JPasswordField createPasswordField(int x,int y,int w,Font f,Color c) {
 		JPasswordField tf = new JPasswordField();
 		tf.setFont(f);
@@ -58,6 +59,7 @@ public abstract class BasePanel extends JPanel implements ICommon{
 		return tf;
 	}
 	
+
 	protected JButton createButton(String text,int x,int y,Font f,Color c,String name) {
 		JButton bt = new JButton();
 		bt.setText(text);

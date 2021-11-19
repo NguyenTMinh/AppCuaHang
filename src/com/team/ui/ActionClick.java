@@ -1,5 +1,7 @@
 package com.team.ui;
 
+import com.team.logic.CuaHang;
+import com.team.logic.KhachHang;
 import com.team.logic.SanPhamCuaHang;
 
 import javax.swing.*;

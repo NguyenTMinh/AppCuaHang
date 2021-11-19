@@ -42,7 +42,7 @@ public class PanelDangNhap extends BasePanel{
         Font small_font = new Font("Tahoma",Font.PLAIN,20);
         Font font2 = new Font("Tahoma", Font.BOLD, 15);
 
-        jLabel_Title = createLabel("STORE",290,50,big_font,Color.BLACK,null);
+        jLabel_Title = createLabel("STORE",305,50,big_font,Color.BLACK,null);
         jLabel_Title.setSize(220,60);
         add(jLabel_Title);
 
@@ -50,6 +50,7 @@ public class PanelDangNhap extends BasePanel{
         add(jLabel_Login);
 
         jTextField_Acc = createTextField(250,300,320,small_font,Color.black);
+        jTextField_Acc.setSize(320,35);
         add(jTextField_Acc);
         jLabel_Acc = createLabel("Tài Khoản",138,300,small_font,Color.black,null);
         add(jLabel_Acc);
