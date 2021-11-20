@@ -39,7 +39,9 @@ public class GUI extends JFrame{
 				int result = JOptionPane.showConfirmDialog(null, "Do you want to close",
 						"Confirm",JOptionPane.YES_NO_OPTION);
 				if( result == JOptionPane.YES_OPTION) {
-					mainPanel.saveDataCH(mainPanel.getCurrentCuaHang());
+					if(mainPanel.getCurrentCuaHang() != null) {
+						mainPanel.saveDataCH(mainPanel.getCurrentCuaHang());
+					}
 					dispose();
 				}
 			}

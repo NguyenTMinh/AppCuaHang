@@ -1,2 +1,1 @@
-m1nh&12&minh&hn&0132&aa@&D:\User's\Code\EclipseProject\AppCuaHang\src\com\team\assets\0132.txt
-m&1&alo shpp&hn&033&aa&D:\User's\Code\EclipseProject\AppCuaHang\src\com\team\assets\033.txt
+m1&1&1&1&1&1&D:\User's\Code\EclipseProject\AppCuaHang\src\com\team\assets\1.txt

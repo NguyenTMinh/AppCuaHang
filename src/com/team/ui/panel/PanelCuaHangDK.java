@@ -321,6 +321,7 @@ public class PanelCuaHangDK extends BasePanel{
 		tf_PSoLuong.setText("");
 		tf_PTenSp.setText("");
 		ta_PThongTin.setText("");
+		tf_GiaTien.setText("");
 	}
 
 	private void addSanPham() {
