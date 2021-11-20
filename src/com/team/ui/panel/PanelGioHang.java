@@ -188,7 +188,6 @@ public class PanelGioHang extends BasePanel {
     }
 
     private void xoaSanPham() {
-    	if(onFindSP) {
     		DefaultListModel<SanPhamCuaHang> model = (DefaultListModel<SanPhamCuaHang>) listSanPhamKhachHang.getModel();
             if (!model.isEmpty() && listSanPhamKhachHang.getSelectedIndex() >= 0) {
             	for (int i = 0; i < gioHang.size(); i++) {
@@ -201,7 +200,6 @@ public class PanelGioHang extends BasePanel {
                 model.remove(listSanPhamKhachHang.getSelectedIndex());
             }
             listSanPhamKhachHang.setModel(model);
-    	}
         
     }
 
