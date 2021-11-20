@@ -181,9 +181,9 @@ public class PanelPhienLamViecCuaKhachHang extends BasePanel {
 	}
 	
 	public void listenOnDelete(int index) {
-		gioHangs.remove(index);
 		listSPKH.remove(index);
 		khachHang.setGioHang(listSPKH);
+
 	}
 }
 

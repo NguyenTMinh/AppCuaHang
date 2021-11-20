@@ -395,6 +395,7 @@ public class MainPanel extends BasePanel implements ActionClick {
 
 	@Override
 	public void passDataToPanelGioHang() {
+		panelGioHang.setGioHang(panelLamViecKhachHang.getGioHangs());
 		panelGioHang.passGHToModel(panelLamViecKhachHang.getGioHangs());
 		panelGioHang.setModelList(panelGioHang.getModel_sp());
 	}

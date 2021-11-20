@@ -164,7 +164,6 @@ public class PanelDSSPKhachHang extends BasePanel {
         if (!model_sp.isEmpty() && listSanPhamCuaHang.getSelectedIndex() >= 0) {
         	JOptionPane.showConfirmDialog(null, "Thêm sản phẩm thành công", "Stores", JOptionPane.CLOSED_OPTION);
         	ack.addGH(model_sp.getElementAt(listSanPhamCuaHang.getSelectedIndex()));
-        	
         }
     }
     

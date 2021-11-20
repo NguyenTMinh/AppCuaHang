@@ -53,6 +53,7 @@ public class PanelGioHang extends BasePanel {
     
     private JList<SanPhamCuaHang> listSanPhamKhachHang;
     private DefaultListModel<SanPhamCuaHang> model_sp;
+    private DefaultListModel<SanPhamCuaHang> model_SpCanTim;
     private List<SanPhamCuaHang> gioHang;
     
     private boolean onFindSP = false;
@@ -162,16 +163,14 @@ public class PanelGioHang extends BasePanel {
         if (name.equals(BT_timKiem)) {
         	onFindSP = true;
             int check = 0;
-            DefaultListModel<SanPhamCuaHang> model_FullSpCuaHang = (DefaultListModel<SanPhamCuaHang>) listSanPhamKhachHang.getModel();
-            for (int i = 0; i < model_FullSpCuaHang.size(); i++) {
-                if (model_FullSpCuaHang.get(i).getMaSP().equals(tf_timKiem.getText())) {
-                    DefaultListModel<SanPhamCuaHang> model_SpCanTim = new DefaultListModel<>();
-                    model_SpCanTim.addElement(new SanPhamCuaHang(model_FullSpCuaHang.get(i).getMaSP(), model_FullSpCuaHang.get(i).getTenSP(), model_FullSpCuaHang.get(i).getPhanLoai(), model_FullSpCuaHang.get(i).getThongTinChiTiet(), model_FullSpCuaHang.get(i).getSoLuong(), model_FullSpCuaHang.get(i).getGiaTien(), model_FullSpCuaHang.get(i).getAnhMH()));
-                    listSanPhamKhachHang.setModel(model_SpCanTim);
+            model_SpCanTim = new DefaultListModel<>();
+            for (int i = 0; i < model_sp.size(); i++) {
+                if (model_sp.get(i).getMaSP().equals(tf_timKiem.getText())) {
+                    model_SpCanTim.addElement(new SanPhamCuaHang(model_sp.get(i).getMaSP(), model_sp.get(i).getTenSP(), model_sp.get(i).getPhanLoai(), model_sp.get(i).getThongTinChiTiet(), model_sp.get(i).getSoLuong(), model_sp.get(i).getGiaTien(), model_sp.get(i).getAnhMH()));
                     check += 1;
-                    break;
                 }
             }
+            listSanPhamKhachHang.setModel(model_SpCanTim);
             if (check == 0) {
                 JOptionPane.showConfirmDialog(null, "Không có sản phẩm", "Error", JOptionPane.CLOSED_OPTION);
             }
@@ -188,8 +187,8 @@ public class PanelGioHang extends BasePanel {
     }
 
     private void xoaSanPham() {
-    		DefaultListModel<SanPhamCuaHang> model = (DefaultListModel<SanPhamCuaHang>) listSanPhamKhachHang.getModel();
-            if (!model.isEmpty() && listSanPhamKhachHang.getSelectedIndex() >= 0) {
+    	if(!onFindSP) {
+    		if (!model_sp.isEmpty() && listSanPhamKhachHang.getSelectedIndex() >= 0) {
             	for (int i = 0; i < gioHang.size(); i++) {
     				if(gioHang.get(i).getMaSP().equals(listSanPhamKhachHang.getSelectedValue().getMaSP())) {
     					gioHang.remove(i);
@@ -197,10 +196,26 @@ public class PanelGioHang extends BasePanel {
     					break;
     				}
     			}
-                model.remove(listSanPhamKhachHang.getSelectedIndex());
+                model_sp.remove(listSanPhamKhachHang.getSelectedIndex());
+                listSanPhamKhachHang.setModel(model_sp);
             }
-            listSanPhamKhachHang.setModel(model);
-        
+    	}else {
+    		if (!model_sp.isEmpty() && listSanPhamKhachHang.getSelectedIndex() >= 0) {
+    			for (int i = 0; i < gioHang.size(); i++) {
+    				if(gioHang.get(i).getMaSP().equals(listSanPhamKhachHang.getSelectedValue().getMaSP())) {
+    					gioHang.remove(i);
+    					model_sp.remove(i);
+    					model_SpCanTim.remove(listSanPhamKhachHang.getSelectedIndex());
+    					ack.updateGioHangOnDelete(i);
+    					break;
+    				}
+    			}
+    			listSanPhamKhachHang.setModel(model_SpCanTim);
+    		}
+    		
+    	}
+            
+            
     }
 
     public void passGHToModel(List<SanPhamCuaHang> list) {
@@ -228,7 +243,13 @@ public class PanelGioHang extends BasePanel {
     public void setModelList(DefaultListModel<SanPhamCuaHang> model) {
         listSanPhamKhachHang.setModel(model);
     }
-    
-    
 
+	public List<SanPhamCuaHang> getGioHang() {
+		return gioHang;
+	}
+
+	public void setGioHang(List<SanPhamCuaHang> gioHang) {
+		this.gioHang = gioHang;
+	}
+    
 }
