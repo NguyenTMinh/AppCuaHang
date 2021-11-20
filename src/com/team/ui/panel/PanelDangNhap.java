@@ -78,6 +78,7 @@ public class PanelDangNhap extends BasePanel{
 		lb_QuayLai.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				clearText();
 				actionClick.comeBack();
 			}
 			

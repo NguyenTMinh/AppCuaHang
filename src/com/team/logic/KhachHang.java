@@ -80,4 +80,9 @@ public class KhachHang extends CommonUser{
 		}
 		return false;
 	}
+	
+	public void updateList(List<SanPhamKhachHang> list) {
+		this.gioHang.clear();
+		gioHang.addAll(list);
+	}
 }

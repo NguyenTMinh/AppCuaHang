@@ -243,23 +243,24 @@ public class MainPanel extends BasePanel implements ActionClick {
     //dang nhap vao khach hang 
     @Override
     public void passDataKHToPanel(KhachHang khachHang) {
-    	panelLamViecKhachHang.setKhachHang(khachHang);
     	panelLamViecKhachHang.clearListHeThong();
+    	panelLamViecKhachHang.setKhachHang(khachHang);
     	for (int i = 0; i < listCuaHang.getCuaHangs().size(); i++) {
     			for (int j = 0; j < listCuaHang.getCuaHangs().get(i).getSanPhamCuaHangs().size(); j++) {
     				panelLamViecKhachHang.addListHeThong(listCuaHang.getCuaHangs().get(i).getSanPhamCuaHangs().get(j));
     			}
     		}
-    	
-    	panelLamViecKhachHang.setLichSu(khachHang.getLishSuMuaHang());
-    	panelLamViecKhachHang.setListSPKH(khachHang.getGioHang());
+
+    	//panelLamViecKhachHang.setLichSu(khachHang.getLishSuMuaHang());
     	for (int i = 0; i < khachHang.getGioHang().size(); i++) {
 			for (int j = 0; j < panelLamViecKhachHang.getListHeThong().size(); j++) {
 				if(khachHang.getGioHang().get(i).getMaSP().equals(panelLamViecKhachHang.getListHeThong().get(j).getMaSP())) {
-					panelLamViecKhachHang.addSPGH(panelLamViecKhachHang.getListHeThong().get(j));
+					panelLamViecKhachHang.addNewGH(panelLamViecKhachHang.getListHeThong().get(j));
+					break;
 				}
 			}
 		}
+
     }
 
     @Override
@@ -322,13 +323,13 @@ public class MainPanel extends BasePanel implements ActionClick {
 
     @Override
     public void toLichSu() {
-        panelLichSu.setVisible(true);
+        //panelLichSu.setVisible(true);
         panelLamViecKhachHang.setVisible(false);
     }
 
     @Override
     public void fromLichSu() {
-        panelLichSu.setVisible(false);
+        //panelLichSu.setVisible(false);
         panelLamViecKhachHang.setVisible(true);
     }
 
@@ -341,7 +342,7 @@ public class MainPanel extends BasePanel implements ActionClick {
 
     @Override
     public void showAllLichSu() {
-        panelLichSu.setModelList(panelLichSu.getModel_sp());
+        //panelLichSu.setModelList(panelLichSu.getModel_sp());
         panelLichSu.setVisible(true);
         panelLamViecKhachHang.setVisible(false);
     }
@@ -407,6 +408,21 @@ public class MainPanel extends BasePanel implements ActionClick {
 
 	public CuaHang getCurrentCuaHang() {
 		return panelPhienCH.getCuaHang();
+	}
+
+	@Override
+	public void saveDataKH(KhachHang khachHang) {
+		for (int i = 0; i < listKhachHang.getKhachHangs().size(); i++) {
+            if (khachHang.getTaiKhoan().equals(listKhachHang.getKhachHangs().get(i).getTaiKhoan())) {
+                listKhachHang.updateKhachHang(khachHang, i);
+                break;
+            }
+        }
+        try {
+            listKhachHang.writeDataToFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
 }

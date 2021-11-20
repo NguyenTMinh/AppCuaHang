@@ -45,6 +45,7 @@ public class ListKhachHang {
 	
 	public void writeDataToFile() throws IOException{
 		File file = new File(PATH);
+		file.delete();
 		file.createNewFile();
 		RandomAccessFile raf = new RandomAccessFile(file, "rw");
 		for(int i = 0; i < getKhachHangs().size(); i++) {
@@ -56,5 +57,9 @@ public class ListKhachHang {
 	
 	public void addKhachHang(KhachHang khachHang) {
 		this.khachHangs.add(khachHang);
+	}
+
+	public void updateKhachHang(KhachHang khachHang, int i) {
+		khachHangs.set(i, khachHang);
 	}
 }

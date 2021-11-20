@@ -1,1 +1,1 @@
-m2&1&1&1&2&2&D:\User's\Code\EclipseProject\AppCuaHang\src\com\team\assets\2.txt
+s&s&s&s&s&s&D:\User's\Code\EclipseProject\AppCuaHang\src\com\team\assets\s.txt

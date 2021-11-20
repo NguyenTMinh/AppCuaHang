@@ -73,6 +73,8 @@ public class PanelPhienCH extends BasePanel{
         jButton_CnKhac.setFocusable(false);
         jButton_CnKhac.setBackground(Color.decode("#97D7D3"));
         add(jButton_CnKhac);
+        
+        jButton_Doanhthu.setEnabled(false);
     }
 
     @Override

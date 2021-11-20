@@ -98,9 +98,11 @@ public class PanelPhienLamViecCuaKhachHang extends BasePanel {
         add(btn_khac);
         
         listHeThong = new ArrayList<>();
-        lichSu = new ArrayList<>();
+        //lichSu = new ArrayList<>();
         listSPKH = new ArrayList<>();
         gioHangs = new ArrayList<>();
+        
+        btn_lichSu.setEnabled(false);
     }
       
 
@@ -118,6 +120,10 @@ public class PanelPhienLamViecCuaKhachHang extends BasePanel {
             ack.toLichSu();
         }
         if(name.equals("button_logout")) {
+        	ack.saveDataKH(khachHang);
+        	listHeThong.clear();
+        	listSPKH.clear();
+        	gioHangs.clear();
         	ack.comeBack();
         }
     }
@@ -165,7 +171,7 @@ public class PanelPhienLamViecCuaKhachHang extends BasePanel {
     public void addSPGH(SanPhamCuaHang hang) {
     	gioHangs.add(hang);
     	listSPKH.add(new SanPhamKhachHang(hang.getMaSP()));
-    	khachHang.setGioHang(listSPKH);
+    	khachHang.updateList(listSPKH);
     }
 
 	public List<SanPhamCuaHang> getGioHangs() {
@@ -182,8 +188,12 @@ public class PanelPhienLamViecCuaKhachHang extends BasePanel {
 	
 	public void listenOnDelete(int index) {
 		listSPKH.remove(index);
-		khachHang.setGioHang(listSPKH);
-
+		khachHang.updateList(listSPKH);
+	}
+	
+	public void addNewGH(SanPhamCuaHang hang) {
+		gioHangs.add(hang);
+    	listSPKH.add(new SanPhamKhachHang(hang.getMaSP()));
 	}
 }
 

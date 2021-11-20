@@ -111,15 +111,7 @@ public class PanelLichSu extends BasePanel {
         btn_filter = createButton("Tất Cả", tf_timKiem.getX() + 500, 45, font2, Color.BLACK, BT_showAll);
         add(btn_filter);
 
-        try {
-            image_quanDai = ImageIO.read(new File("src/com/team/ui/Picture/quandai.png"));
-            image_aoPhong = ImageIO.read(new File("src/com/team/ui/Picture/aophong.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        imageIcon_Quandai = new ImageIcon(image_quanDai.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
-        imageIcon_aoPhong = new ImageIcon(image_aoPhong.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
-
+ 
         // jlist
         JPanel jPanel_main = new JPanel();
         jPanel_main.setBounds(0, 130, 795, 370);
@@ -127,13 +119,7 @@ public class PanelLichSu extends BasePanel {
         jPanel_main.setLayout(new BorderLayout());
 
         model_sp = new DefaultListModel<>(); // Táº¡o model Ä‘á»ƒ add vÃ o JList -- má»—i model lÃ  thá»ƒ hiá»‡n cho 1 sáº£n pháº©m cá»§a cá»­a hÃ ng
-        model_sp.addElement(new SanPhamCuaHang("1", "Ã�o thun", "Ã�o", "Ã�o cao cáº¥p", 20, 150, imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("2", "Ã�o dÃ i tay", "Ã�o", "Ã�o cao cáº¥p", 20, 200, imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("3", "Ã�o phÃ´ng ", "Ã�o", "Ã�o cao cáº¥p", 20, 150, imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("4", "Ã�o sÆ¡ mi", "Ã�o", "Ã�o cao cáº¥p", 20, 350, imageIcon_aoPhong));
-        model_sp.addElement(new SanPhamCuaHang("5", "Quáº§n Ä‘Ã¹i", "Quáº§n", "Quáº§n cao cáº¥p", 20, 200, imageIcon_Quandai));
-        model_sp.addElement(new SanPhamCuaHang("6", "Quáº§n dÃ i", "Quáº§n", "Quáº§n cao cáº¥p", 20, 250, imageIcon_Quandai));
-
+  
         listSanPhamKhachHang = new JList<>(model_sp);
         listSanPhamKhachHang.setCellRenderer(new PanelSanPhamRender());
         jPanel_main.add(new JScrollPane(listSanPhamKhachHang), BorderLayout.CENTER); // add Jlist vÃ o trong 1 ScrollPane , sau Ä‘Ã³ add ScrollPane vÃ o cÃ¡i PanelMain

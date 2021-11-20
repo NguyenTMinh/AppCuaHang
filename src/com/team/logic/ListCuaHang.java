@@ -44,6 +44,7 @@ public class ListCuaHang {
 	
 	public void writeDataToFile() throws IOException{
 		File file = new File(PATH);
+		file.delete();
 		file.createNewFile();
 		RandomAccessFile raf = new RandomAccessFile(file, "rw");
 		for (int i = 0; i < cuaHangs.size(); i++) {
