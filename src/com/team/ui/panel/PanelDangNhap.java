@@ -103,7 +103,13 @@ public class PanelDangNhap extends BasePanel{
         		if(checkValidAccount(jTextField_Acc.getText(), jPasswordField_Pass.getText(),actionClick.getRole())) {
         			JOptionPane.showConfirmDialog(null, "Đăng nhập thành công", "Stores", JOptionPane.CLOSED_OPTION);
         			clearText();
-        			actionClick.goToPhienCH();
+                                if(actionClick.getRole() == 0){
+                                    actionClick.goToPhienCH();
+                                }
+                                else{
+                                    actionClick.goToPhienKH();
+                                }
+        			
         		}else {
         			JOptionPane.showConfirmDialog(null, "Đăng nhập không thành công,\nvui lòng thử lại", "Error", JOptionPane.CLOSED_OPTION);
         		}
@@ -125,7 +131,7 @@ public class PanelDangNhap extends BasePanel{
     		for (int i = 0; i < actionClick.getListKH().size(); i++) {
     			if(acc.equals(actionClick.getListKH().get(i).getTaiKhoan()) && pass.equals(actionClick.getListKH().get(i).getMatKhau())) {
     				actionClick.passDataKHToPanel(actionClick.getListKH().get(i));
-    				//khach hang chua xong
+    				actionClick.setUserNameKH(actionClick.getListKH().get(i).getHoTen());
     				return true;
     			}
     		}
