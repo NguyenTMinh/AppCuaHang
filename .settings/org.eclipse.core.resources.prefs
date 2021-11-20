@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/com/team/ui/panel/MainPanel.java=UTF-8
 encoding//src/com/team/ui/panel/PanelAddSp.java=UTF-8
 encoding//src/com/team/ui/panel/PanelCuaHangDK.java=UTF-8
+encoding//src/com/team/ui/panel/PanelDSSPKhachHang.java=UTF-8
 encoding//src/com/team/ui/panel/PanelDangKy.java=UTF-8
 encoding//src/com/team/ui/panel/PanelDangNhap.java=UTF-8
 encoding//src/com/team/ui/panel/PanelKhachHangDK.java=UTF-8
