@@ -68,7 +68,7 @@ public class PanelPhienLamViecCuaKhachHang extends BasePanel {
     @Override
     public void addComp() {
 
-        Font font1 = new Font("Tahoma", Font.BOLD, 20);
+    	Font font1 = new Font("Tahoma", Font.BOLD, 20);
         Font font2 = new Font("Tahoma", Font.BOLD, 15);
         Icon icon = new ImageIcon("D:\\Downloads\\ic_arrow_back_ios1.png", "comeback");
         Font font = new Font("Tahoma",Font.PLAIN,20);
