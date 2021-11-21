@@ -251,7 +251,7 @@ public class MainPanel extends BasePanel implements ActionClick {
     			}
     		}
 
-    	//panelLamViecKhachHang.setLichSu(khachHang.getLishSuMuaHang());
+    	panelLamViecKhachHang.setLichSu(khachHang.getLishSuMuaHang());
     	for (int i = 0; i < khachHang.getGioHang().size(); i++) {
 			for (int j = 0; j < panelLamViecKhachHang.getListHeThong().size(); j++) {
 				if(khachHang.getGioHang().get(i).getMaSP().equals(panelLamViecKhachHang.getListHeThong().get(j).getMaSP())) {
@@ -399,6 +399,8 @@ public class MainPanel extends BasePanel implements ActionClick {
 		panelGioHang.setGioHang(panelLamViecKhachHang.getGioHangs());
 		panelGioHang.passGHToModel(panelLamViecKhachHang.getGioHangs());
 		panelGioHang.setModelList(panelGioHang.getModel_sp());
+		panelGioHang.tinhTongTien();
+		panelGioHang.setTongTienTF(panelGioHang.getTongTien());
 	}
 
 	@Override
@@ -425,4 +427,12 @@ public class MainPanel extends BasePanel implements ActionClick {
         }
 	}
 	
+	public KhachHang getCurrentKH() {
+		return panelLamViecKhachHang.getKhachHang();
+	}
+
+	@Override
+	public void updateGioHangOnDeleteAll() {
+		panelLamViecKhachHang.listenOnDelAll();
+	}
 }

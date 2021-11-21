@@ -98,7 +98,7 @@ public class PanelPhienLamViecCuaKhachHang extends BasePanel {
         add(btn_khac);
         
         listHeThong = new ArrayList<>();
-        //lichSu = new ArrayList<>();
+        lichSu = new ArrayList<>();
         listSPKH = new ArrayList<>();
         gioHangs = new ArrayList<>();
         
@@ -188,6 +188,15 @@ public class PanelPhienLamViecCuaKhachHang extends BasePanel {
 	
 	public void listenOnDelete(int index) {
 		listSPKH.remove(index);
+		khachHang.updateList(listSPKH);
+	}
+	
+	public void listenOnDelAll() {
+		for (int i = 0; i < listSPKH.size(); i++) {
+			listSPKH.get(i).setThanhToan(true);
+		}
+		lichSu.addAll(listSPKH);
+		listSPKH.removeAll(listSPKH);
 		khachHang.updateList(listSPKH);
 	}
 	

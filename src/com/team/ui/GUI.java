@@ -42,6 +42,9 @@ public class GUI extends JFrame{
 					if(mainPanel.getCurrentCuaHang() != null) {
 						mainPanel.saveDataCH(mainPanel.getCurrentCuaHang());
 					}
+					if(mainPanel.getCurrentKH() != null) {
+						mainPanel.saveDataKH(mainPanel.getCurrentKH());
+					}
 					dispose();
 				}
 			}

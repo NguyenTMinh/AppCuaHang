@@ -57,5 +57,5 @@ public interface ActionClick {
     void showAllDanhSachSanPham();
     void addGH(SanPhamCuaHang sp);
     void updateGioHangOnDelete(int index);
-    
+    void updateGioHangOnDeleteAll();
 }

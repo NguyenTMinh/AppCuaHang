@@ -57,6 +57,7 @@ public class PanelGioHang extends BasePanel {
     private List<SanPhamCuaHang> gioHang;
     
     private boolean onFindSP = false;
+    private long tongTien = 0;
 
 
     public ActionClick getAck() {
@@ -143,6 +144,7 @@ public class PanelGioHang extends BasePanel {
         add(lb_tong);
         tf_tongTien = createTextField(370, 550, 200, font2, Color.BLACK);
         tf_tongTien.setSize(200, 40);
+        tf_tongTien.setEditable(false);
         add(tf_tongTien);
         btn_xoa = createButton("Xóa", tf_tongTien.getX() + 250, 550, font2, Color.BLACK, BT_xoa);
         add(btn_xoa);
@@ -153,12 +155,18 @@ public class PanelGioHang extends BasePanel {
     @Override
     protected void handleClick(String name) {
         if (name.equals(BT_thanhtoan)) {
-            long tongTien = 0;
-            DefaultListModel<SanPhamCuaHang> model_FullSpCuaHang = (DefaultListModel<SanPhamCuaHang>) listSanPhamKhachHang.getModel();
-            for (int i = 0; i < model_FullSpCuaHang.size(); i++) {
-                tongTien += model_FullSpCuaHang.get(i).getGiaTien();
-            }
-            tf_tongTien.setText(String.valueOf(tongTien));
+        	if(!onFindSP) {
+                tf_tongTien.setText("");
+                ack.updateGioHangOnDeleteAll();
+                gioHang.removeAll(gioHang);
+                model_sp.removeAllElements();
+                listSanPhamKhachHang.setModel(model_sp);
+                JOptionPane.showConfirmDialog(null, "Thanh toán thành công\nTổng tiền "+String.valueOf(tongTien), "Stores", JOptionPane.CLOSED_OPTION);
+                
+        	}else {
+        		JOptionPane.showConfirmDialog(null, "Vui lòng chọn tất cả sản phẩm", "Error", JOptionPane.CLOSED_OPTION);
+        	}
+         
         }
         if (name.equals(BT_timKiem)) {
         	onFindSP = true;
@@ -251,5 +259,23 @@ public class PanelGioHang extends BasePanel {
 	public void setGioHang(List<SanPhamCuaHang> gioHang) {
 		this.gioHang = gioHang;
 	}
-    
+
+	public long getTongTien() {
+		return tongTien;
+	}
+
+	public void setTongTien(long tongTien) {
+		this.tongTien = tongTien;
+	}
+	
+	public void setTongTienTF(long tien) {
+		tf_tongTien.setText(String.valueOf(tien));
+	}
+	
+	public void tinhTongTien() {
+		tongTien = 0;
+		for (int i = 0; i < model_sp.size(); i++) {
+            tongTien += model_sp.get(i).getGiaTien();
+        }
+	}
 }
